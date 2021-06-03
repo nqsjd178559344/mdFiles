@@ -37,3 +37,9 @@
 6. 方法:
    1. Symbol.for()
    2. Symfol.keyFor()
+
+7. 总结
+   1. 表示**独一无二**的值，用于定义对象的唯一属性名
+        ==注 :同样参数的Symbol.for 出来的值相等,剩下的Symbol和任何值都不等==
+    1. Symbol.for: 类例单例模式,首先会在全局搜索被登记的 Symbol 中是否有该字符串参数作为名称的 Symbol 值，如果有即返回该 Symbol 值，若没有则新建并返回一个以该字符串参数为名称的 Symbol 值，并登记在全局环境中供搜索。
+    2. Symbol.keyfor: 返回一个已登记的 Symbol 类型值的 key ，用来检测该字符串参数作为名称的 Symbol 值是否已被登记。
