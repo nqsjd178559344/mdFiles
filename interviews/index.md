@@ -105,7 +105,7 @@
     1. float: !none
     2. display: inline-block | flex | table-cell | table-caption
     3. overflow: !visible
-    4. position: !static || !relative
+    4. position: !static && !relative
 
 6. less、sass 的一些基础用法 （一般）
     (1)Less
@@ -249,19 +249,51 @@
         实现
 
 ## React
+<!-- * finish -->
 1. React的生命周期以及发生的顺序？（简单）
+    **错误**
    1. componentWillMount
    2. componentDidMount
    3. componentWillUpdate
+   **正确**
+   1. 挂载
+      1. constructor
+         1. 通过给 this.state 赋值对象来初始化内部 state
+         2. 为事件处理函数绑定实例
+      2. static getDerivedStateFromProps()
+         1. 会在调用 render 方法之前调用，并且在初始挂载及后续更新时都会被调用。
+         2. 它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。
+      3. render()
+      4. * componentDidMount
+   2. 更新
+      1. static getDerivedStateFromProps()
+      2. shouldComponentUpdate()
+      1. render()
+      2. getSnapshotBeforeUpdate()
+      3. * componentDidUpdate()
+   3.  卸载
+       1. * componentWillUnmount
+   4.  错误处理
+       1.  static getDerivedStateFromError()
+       2. * componentDidCatch()
+   
 2. React的Key有什么作用？（简单）
    1. diff算法时标明当前数据有无变更
+   
 3. this.setState有几个参数？第二个参数是干什么用的？（简单）
-   1. 两个,
+   1. 两个: setState(updater, [callback])
+      1. updater: 
+         1. { quantity:2 }
+         2. (state,props)=>{ return { quantity:state.quantity + 1 } }
+      2. callback:
+         1. 在 setState 完成合并并重新渲染组件后执行。通常，我们建议使用 componentDidUpdate() 来代替此方式。*
+   
 4. 数组渲染是否能使用index？为什么？（简单）
-   1. 如果显示的仅为item，则可使用index;其他情况最好不要
+    如果显示的仅为item，则可使用index;其他情况最好不要
+   
 5. Component，PureComponent，FunctionComponent分别是什么？有些什么样的特点？作用？（一般）
    1. Component: 组件式
-   2. PureComponent: Component加强版，自动进行了shouldComponentUpdate
+   2. PureComponent: Component加强版，对 props 和 state 进行浅层比较，并减少了跳过必要更新的可能性。(自动进行了shouldComponentUpdate)
    3. FunctionComponent: 函数式组件
 
 
