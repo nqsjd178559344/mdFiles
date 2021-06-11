@@ -23,6 +23,15 @@
            8. cacheStorage
            9.  flash缓存
         2. cookie 可以设置成相同主域的时候，跨子域访问，另外两个是不能跨域访问的，哪怕只是端口号不同，都不能访问
+3. innerHTML 和 innerText 的区别？
+   eg: 
+    ```
+    <div id="test">
+         <span style="color:red">test1</span> test2
+    </div>
+    ```
+    innerHTML: ```<span style="color:red">test1</span> test2```
+    innerText: test1
 
 
 ## CSS
@@ -250,18 +259,20 @@
    2. 更新
       1. static getDerivedStateFromProps()
       2. shouldComponentUpdate()
-      1. render()
-      2. getSnapshotBeforeUpdate()
-      3. * componentDidUpdate()
+      3. render()
+      4. getSnapshotBeforeUpdate()
+      5. * componentDidUpdate()
    3.  卸载
        1. * componentWillUnmount
    4.  错误处理
        1.  static getDerivedStateFromError()
        2. * componentDidCatch()
    
+<!-- * finish -->
 2. React的Key有什么作用？（简单）
    1. diff算法时标明当前数据有无变更
    
+<!-- * finish -->
 3. this.setState有几个参数？第二个参数是干什么用的？（简单）
    1. 两个: setState(updater, [callback])
       1. updater: 
@@ -273,11 +284,25 @@
 4. 数组渲染是否能使用index？为什么？（简单）
     如果显示的仅为item，则可使用index;其他情况最好不要
    
+<!-- * finish -->
 5. Component，PureComponent，FunctionComponent分别是什么？有些什么样的特点？作用？（一般）
-   1. Component: 组件式
-   2. PureComponent: Component加强版，对 props 和 state 进行浅层比较，并减少了跳过必要更新的可能性。(自动进行了shouldComponentUpdate)
-   3. FunctionComponent: 函数式组件
+   **原答案**
+   1. Component: 有自己独立的状态，业务逻辑，比价重。
+   2. PureComponent: 简略的实现了一套浅层对比的shouldComponentUpdate。对象引用不改变，属性改变就不起作用了。
+   3. FunctionComponent: 没有state，纯渲染，速度快。
+   
+  为什么函数组件的性能比类组件的性能要高？因为类组件使用的时候要实例化
 
+  **网络上的回答**
+  1. 生成元素的差异:经过 React.createElement 处理之后，三个组件的区别就是 type 不一样了
+     1.  Component: type: class Comp
+     2.  PureComponent: type: class PureComp
+     3.  FunctionComponent: type f FunctionComp()
+
+  **本人答案**
+   1. Component: 使用 ES6 classes 方式定义 React 组件 ; 不管props和state是否变化,组件都会更新
+   2. PureComponent: Component加强版，对 props 和 state 进行浅层比较[不会比较对象深层次的值是否相等]，并减少了跳过必要更新的可能性。(自动进行 shouldComponentUpdate)
+   3. FunctionComponent: 函数式组件;
 
 ## Vue
 1. Vue的生命周期？
