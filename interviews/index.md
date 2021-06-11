@@ -69,16 +69,6 @@
 
 <!-- * finish -->
 3. 纯css 实现一个向下的小三角（简单）
-   *错误*
-    ```
-    width:0;
-    height:0;
-    border-left:5px solid red;
-    border-right:5px solid red;
-    border-bottom:5px solid translate; // transparent
-    ```
-    
-    *正确*
     ```
     width: 0px;
     height: 0px;
@@ -93,9 +83,6 @@
 
 <!-- * finish -->
 5. 什么是 BFC？（简单）
-    *错误*   
-    BFC即暂时性死区
-    *正确*
     块级格式化上下文，可看作独立的容器，容器内的元素不会影响容器外的元素
     **特点**
     1. 同一个BFC的相邻Box的margin会重叠
@@ -251,11 +238,6 @@
 ## React
 <!-- * finish -->
 1. React的生命周期以及发生的顺序？（简单）
-    **错误**
-   1. componentWillMount
-   2. componentDidMount
-   3. componentWillUpdate
-   **正确**
    1. 挂载
       1. constructor
          1. 通过给 this.state 赋值对象来初始化内部 state
