@@ -13,4 +13,5 @@ for in / for of 的 区别:
       3. for-of循环将重复调用这个方法，每次循环调用一次
 4. 
 注:
-   1. Object.keys() 会遍历所有自身(不包含继承)的可枚举属性
+   1. Object.keys(): 会遍历所有自身(不包含继承)的可枚举属性
+   2. Object.getOwnPropertyNames(): 会遍历所有自身(不包含继承)的所有属性(不含Symbol属性,但是包括不可枚举属性)
