@@ -1,6 +1,6 @@
 1. js 调用函数 三种方式 :
     ```
-    func(1,2) ≈ window.func(window,1,2)  ≈ func(undefined,1,2) 
+    func(1,2) ≈ window.func(window,1,2) / func(undefined,1,2) 
     obj.child.method(1,2) ≈ obj.child.method(obj.child,1,2)
     func.call(context,1,2)
     ```
