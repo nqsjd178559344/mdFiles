@@ -22,7 +22,7 @@
                 console.log(item);
             }
 
-            for (let item of set)) { //  = set.values()
+            for (let item of set) { //  = set.values()
                 console.log(item);
             }
             
@@ -86,7 +86,7 @@
       2. values()
       3. entries()
          ```
-         for (let item of map)) { //  = map.entries()
+         for (let item of map) { //  = map.entries()
              console.log(item);
          }
          
