@@ -7,7 +7,8 @@
    ```
    2. 参数为 string
    ```
-   let a1 = Symbol('a1');let a2 = Symbol('a2');
+   let a1 = Symbol('a1');
+   let a2 = Symbol('a2');
    ```
    1. 参数为 object
    ```
