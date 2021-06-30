@@ -106,6 +106,56 @@
 6. less、sass 的一些基础用法 （一般）
     (1)Less
 
+<!-- * finish -->
+7. flex
+   1. 属性<common : flex-start; center; flex-end>
+      1. display:flex
+      2. flex-direction<排布方式>:
+         1. column: 纵轴
+         2. reverse-column: 倒序纵轴 ***column-reverse***
+         3. row: 默认
+         4. reverse-row: 倒序默认 ***row-reverse***
+      3. ***flex-wrap<折行方式>***:
+         1. no-wrap
+         2. wrap
+         3. ***wrap-reverse***
+      4. ***flex-flow***
+      5. justify-content<横轴排列方式>:
+         ...common,space-around; space-between
+      6. align-items<交叉轴排列方式>:
+         ...common,***baseline***,***stretch***
+      7. order
+      8. 多行排列??? => ***align-content<多轴线>***
+      9. flex-self => ***align-self***
+         ***...align-items,auto***
+      10. flex-grow<放大>:***init = 0***
+      11. flex-shrink<缩小>:***init = 1***
+      12. flex-***basis***<默认>: ***init = auto***
+   2. flex:1/flex:auto/flex:none区别
+      1. flex:1 => flex-grow = 1;flex-shrink = 1;flex-basis = 0%
+      2. flex:auto => flex grow = 1;flex shrink = 1;flex-basis = auto
+      3. flex:none => flex grow = 0;flex shrink = 0;flex-basis = auto
+   3. flex-shrink 计算方式
+    eg:
+    ```
+    wrapper = 500
+    item1~item5 = 120
+    item-n: flex-shrink:n
+    求:
+    item1~5各剩余多少?
+    ```
+    答:
+    120*5 = 600,600 - 500 = 100
+    故item1~5共收缩100
+    因1+2+...+5 = 15
+    故item-n: 120 - 100 / 15 * n = 120- 6.667n
+    item-1: 120-6.667 * 1 = 113.333 => 向上取整两位 113.34
+    item-2: 120-6.667 * 2 = 106.666 => 向上取整两位 106.66
+    item-3: 120-6.667 * 3 = 99.999 => 向上取整两位 100
+    item-4: 120-6.667 * 4 = 93.332 => 向上取整两位 93.34
+    item-5: 120-6.667 * 5 = 86.665 => 向上取整两位 86.66
+
+8. css 会继承的属性
 ### JS
 <!-- * finish -->
 1. 基础数据类型有哪些？引用数据类型有哪些？基础数据类型和引用类型的区别？（简单）
@@ -241,8 +291,32 @@
 7. 防抖和节流的实现方式，一般使用场景（一般）
    1. 防抖: 一般用于input框输入，即输入完成后才去做事（景区大巴车）
         实现
+        
    2. 节流: 一般用于阶段性传递信息（普通公交车）
         实现
+
+8. 前端模块化:
+   1. commonJS / AMD / CMD / ES6 区别?
+      1. commonJS: **运行时加载，输出值得复制，同步加载**
+         module.exports / require
+      2. AMD: **异步加载**
+         ```
+         定义:
+         define(function(){ return 模块 })
+         define(['依赖模块1','依赖模块2'],function(m1,m2){ return 模块 })
+         引入:
+         require(['依赖模块1','依赖模块2'],function(m1,m2){ 使用 })
+         ```
+       1. CMD: **用于浏览器端，模块异步加载，使用时加载执行**
+          ```
+          定义:
+          define(function(require,exports,module){ return 模块 })
+          引入:
+          define(function(require){ var m1 = require('./index) ; })
+          ```
+       2. ES6:export (default) / import **编译时输出值的引用，即不可更改**
+         
+9.  ES6~ES10的新增语法
 
 ## React
 <!-- * finish -->
