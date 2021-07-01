@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+
+      font-size: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 100;
+      font-style: inherit;
+      font-variant: small-caps;
+      font-stretch: expanded;
+    }
+
+    .wrap_font {
+      width: 100px;
+      height: 100px;
+      background-color: blueviolet;
+
+      /* 测试可继承属性 */
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 200;
+      font-style: oblique;
+      font-variant: inherit;
+      font-feature-settings: "aalt";
+      font-stretch: condensed;
+      font-variant-ligatures: common-ligatures;
+      font-kerning: normal;
+      font-optical-sizing: none;
+      /* 兼容性 */
+      font-synthesis: style;
+      font-variant-alternates: normal;
+      font-language-override: inherit;
+      font-size-adjust: 0.5;
+    }
+
+    .wrap_text {
+      text-align: center;
+      text-indent: 0%;
+      text-decoration: dotted;
+      text-transform: lowercase;
+      text-overflow: ellipsis;
+      text-shadow: none;
+      text-rendering: auto;
+      text-decoration-color: aliceblue;
+    }
+
+    .wrap_visibility {
+      visibility: hidden;
+    }
+
+    .wrap_cursor {
+      cursor: pointer;
+    }
+
+    .wrap_list_style {
+      list-style-type: circle;
+      list-style-position: outside;
+      list-style-image: none;
+      list-style: circle;
+    }
+
+    .wrap_color {
+      color: blue;
+    }
+
+    .wrap_item {
+      width: 50px;
+      height: 50px;
+      background-color: yellowgreen;
+    }
+    .item{
+      width: 10px;
+      height: 10px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">111
+    <!-- <div class="wrap_font">222
+      <div class="item">333</div>
+    </div> -->
+
+    <!-- <div class="wrap_text">222
+      <div class="item">div</div>
+      <span class="item">span</span>
+    </div> -->
+
+    <!-- <div class="wrap_visibility">222
+      <div class="item">div</div>
+      <span class="item">span</span>
+    </div> -->
+
+    <!-- <div class="wrap_cursor">222
+      <div class="item">div</div>
+      <span class="item">span</span>
+    </div> -->
+
+    <!-- <div class="wrap_list_style">
+      <div class="item">div</div>
+      <span class="item">span</span>
+    </div> -->
+
+    <div class="wrap_color">
+      <div class="wrap_item">div</div>
+      <span class="wrap_item">span
+        <span class="item">
+          111
+        </span>
+      </span>
+    </div>
+  </div>
+
+</body>
+
+</html>

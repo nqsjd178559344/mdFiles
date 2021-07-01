@@ -156,7 +156,44 @@
     item-4: 120-6.667 * 4 = 93.332 => 向上取整两位 93.34
     item-5: 120-6.667 * 5 = 86.665 => 向上取整两位 86.66
 
-8. css 会继承的属性
+<!-- * finish -->
+8. css 会继承的属性[自测版]
+   1. font<所有属性[可能有兼容性问题]>:
+      1. font-size
+      2. font-family
+      3. font-weight
+      4. font-style
+      5. ...
+      6. font-variant
+      7. font-feature-settings
+      8. font-stretch
+      9. font-variant-ligatures
+      10. font-kerning
+      11. font-optical-sizing
+      <!-- 兼容性 -->
+      1.  font-size-adjust
+      2.  font-synthesis
+      3.  font-variant-alternates
+      4.  font-language-override
+      5.  font-size-adjust
+   2. text<所有属性[可能有兼容性问题]>:
+      1. text-align
+      2. text-decoration
+      3. text-transform
+      4. text-overflow
+      5. text-shadow
+      6. text-indent
+      7. ...
+   3. visibility / opacity
+   4. color
+   5. 表格:
+   6. 列表: 
+        list-style :  
+         1. list-style-position
+         2. list-style-image
+         3. list-style-type
+   7. 光标: cursor
+   8. 
 ### JS
 <!-- * finish -->
 1. 基础数据类型有哪些？引用数据类型有哪些？基础数据类型和引用类型的区别？（简单）
