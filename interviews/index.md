@@ -126,7 +126,8 @@
          ...common,***baseline***,***stretch***
       7. order
       8. 多行排列??? => ***align-content<多轴线>***
-      9. flex-self => ***align-self***
+         ***...align-items , ...justify-content***
+      9.  flex-self => ***align-self***
          ***...align-items,auto***
       10. flex-grow<放大>:***init = 0***
       11. flex-shrink<缩小>:***init = 1***
@@ -295,11 +296,12 @@
    2. 节流: 一般用于阶段性传递信息（普通公交车）
         实现
 
+<!-- *finish -->
 8. 前端模块化:
    1. commonJS / AMD / CMD / ES6 区别?
       1. commonJS: **运行时加载，输出值得复制，同步加载**
          module.exports / require
-      2. AMD: **异步加载**
+      2. AMD: **异步加载**[requirejs]
          ```
          定义:
          define(function(){ return 模块 })
@@ -307,14 +309,14 @@
          引入:
          require(['依赖模块1','依赖模块2'],function(m1,m2){ 使用 })
          ```
-       1. CMD: **用于浏览器端，模块异步加载，使用时加载执行**
+      3. CMD: **用于浏览器端，模块异步加载，使用时加载执行**[seajs]
           ```
           定义:
           define(function(require,exports,module){ return 模块 })
           引入:
           define(function(require){ var m1 = require('./index) ; })
           ```
-       2. ES6:export (default) / import **编译时输出值的引用，即不可更改**
+      4. ES6:export (default) / import **编译时输出值的引用，即不可更改**
          
 9.  ES6~ES10的新增语法
 
