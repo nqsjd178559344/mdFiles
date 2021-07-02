@@ -336,6 +336,7 @@
 
 5. 如何避免回调地狱？（一般）
    1. 使用Promise
+      1. 状态: pending | resolved[已定型](fulfilled | rejected)
    2. async、await
 6. 什么是事件循环（event loop）（一般）
    1. 
