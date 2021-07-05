@@ -373,7 +373,22 @@
           ```
       4. ES6:export (default) / import **编译时输出值的引用，即不可更改**
          
-9.  ES6~ES10的新增语法
+10.  ES6~ES10的新增语法
+
+<!-- * finish -->
+11.  webSocket
+     1. 解决问题：
+        1. 服务端主动推消息到客户端 / 客户端主动推消息到服务端
+     2. 特点:
+        1. 数据格式轻量，性能开销小，通信高效
+        2. 无同源限制
+     3. API
+        1. 开始连接: const ws = new WebSocket("url")
+        2. 发送数据: ws.send(msg)
+        3. 连接成功后的回调: ws.onopen
+        4. 连接关闭后的回调: ws.onclose
+        5. 接收数据后的回调: ws.onmessage
+        6. 报错时的回调: ws.onerror
 
 ## React
 <!-- * finish -->
