@@ -23,7 +23,9 @@
            8. cacheStorage
            9.  flash缓存
         2. cookie 可以设置成相同主域的时候，跨子域访问，另外两个是不能跨域访问的，哪怕只是端口号不同，都不能访问
-3. innerHTML 和 innerText 的区别？
+
+<!-- * finish -->
+1. innerHTML 和 innerText 的区别？
    eg: 
     ```
     <div id="test">
@@ -346,6 +348,8 @@
         
    2. 节流: 一般用于阶段性传递信息（普通公交车）
         实现
+
+8. async、await /   promise /  generator区别（一般）
 
 <!-- *finish -->
 8. 前端模块化:
