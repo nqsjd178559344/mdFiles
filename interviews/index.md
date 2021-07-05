@@ -349,12 +349,12 @@
    2. 节流: 一般用于阶段性传递信息（普通公交车）
         实现
 
-8. async、await /   promise /  generator区别（一般）
+8. async、await / promise / generator区别（一般）
 
-<!-- *finish -->
-8. 前端模块化:
+<!-- * finish -->
+9. 前端模块化:
    1. commonJS / AMD / CMD / ES6 区别?
-      1. commonJS: **运行时加载，输出值得复制，同步加载**
+      1. commonJS: **运行时加载，输出值的复制，同步加载**
          module.exports / require
       2. AMD: **异步加载**[requirejs]
          ```
