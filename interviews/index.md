@@ -449,6 +449,20 @@
    1. Component: 使用 ES6 classes 方式定义 React 组件 ; 不管props和state是否变化,组件都会更新
    2. PureComponent: Component加强版，对 props 和 state 进行浅层比较[不会比较对象深层次的值是否相等]，并减少了跳过必要更新的可能性。(自动进行 shouldComponentUpdate)
    3. FunctionComponent: 函数式组件;
+   
+6. React Hook参数
+   1. 基本
+      1. useState
+      2. useEffect
+      3. useContext
+   2. 额外
+      1. useReducer
+      2. useMemo
+      3. useCallback
+      4. useRef
+      5. useLayoutEffect
+      6. **useDebugValue**
+      7. **useImperativeHandle**
 
 ## Vue
 1. Vue的生命周期？
