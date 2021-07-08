@@ -463,6 +463,13 @@
       5. useLayoutEffect
       6. **useDebugValue**
       7. **useImperativeHandle**
+   
+7. mobx-react
+   1. 参数
+      1. @observable
+      2. @computed
+      3. @action
+      4. @
 
 ## Vue
 1. Vue的生命周期？
