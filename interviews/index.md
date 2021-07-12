@@ -355,6 +355,9 @@
 9. 前端模块化:
    1. commonJS / AMD / CMD / ES6 区别?
       1. commonJS: **运行时加载，输出值的复制，同步加载**
+         1. 特性
+            1. 第一次加载某个模块时，Node会缓存该模块。以后再加载该模块，就直接从缓存取出该模块的module.exports属性。
+            2. 一旦输出一个值，模块内部的变化就影响不到这个值。
          module.exports / require
       2. AMD: **异步加载**[requirejs]
          ```
