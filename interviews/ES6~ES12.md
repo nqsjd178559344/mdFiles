@@ -12,8 +12,12 @@
       2. startsWith(searchString,position)
       3. endsWith(searchString,position)
       4. repeat(+N) // 向下取整的+N
-      5. padStart(length,string) [ES8]
-      6. padEnd(length,string) [ES8]
+      5. padStart(length,string) [ES8/ES2017]
+      6. padEnd(length,string) [ES8/ES2017]
       7. trim: 消除string 首尾空格
-      8. trimStart [ES10]
-      9. trimEnd [ES10]
+      8. trimStart/trimLeft [ES10/ES2019]
+      9. trimEnd/trimRight  [ES10/ES2019]
+      10. matchAll
+      11. replaceAll [ES12/ES2121]/replace区别
+          1.  replaceAll:一键替换所有
+          2.  replace(regexp|subStr, newSubStr|function): 默认只替换第一个
