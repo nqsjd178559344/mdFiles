@@ -343,6 +343,8 @@
         实现
 
 8. async、await / promise / generator区别（一般）
+   1. async、await => Promise优化版
+   2. async、await = generator + 执行器
 
 <!-- * finish -->
 9. 前端模块化:

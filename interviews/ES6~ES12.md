@@ -42,4 +42,47 @@
       2. 不可使用new
       3. 不可使用arguments
       4. 不可使用yield
-      5. 
+8. Array
+   1. ... => 取代 apply
+   2. find
+   3. findIndex
+   4. fill
+   5. keys/values/entries
+   6. includes
+   7. flat/flatMap
+   8. Array.from => 转换类数组对象(y存在length属性)
+9. Object
+   1.  getOwnPropertyDescriptor => 获取描述对象
+       1.  value
+       2.  writable
+       3.  enumerable *可枚举性*
+       4.  configurable
+   2.  is()
+   3.  assign()
+   4.  __proto__
+       1.  setPrototypeOf
+       2.  getPrototypeOf
+   5.  *fromEntries* => Object.entries 逆操作
+10. 运算符
+    1.  **: a**2 === a ** a
+    2.  ?.: a?.b?.c => 如果取到null||undefined, 则return undefined [ES11/ES2020]
+    3.  ??: a??b => a==null || a== undefined 时 [ES11/ES2020]
+11. Symbol
+1.  Set/Map
+2.  Promise
+3.  Iterator 
+   6.  可使用rest
+   7.  可遍历 [for..of]
+4.  Generator
+    1.  返回*遍历器对象*
+5.  async[ES8/ES2017]
+    1.  返回Promise *原始类型则用Promise.resolve 包裹*
+
+注:
+1. 空位处理:
+   1. ES5
+      1. forEach(), filter(), reduce(), every() 和some()都会跳过空位。
+      2. map()会跳过空位，但会保留这个值
+      3. join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
+   2. ES6
+      1. 空位转为undefined
