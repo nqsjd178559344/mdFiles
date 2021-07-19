@@ -344,6 +344,8 @@
 
 8. async、await / promise / generator区别（一般）
    1. async、await => Promise优化版
+      1. async函数完全可以看作多个异步操作，包装成的一个 Promise 对象
+      2. await命令就是内部then命令的语法糖。
    2. async、await = generator + 执行器
 
 <!-- * finish -->
