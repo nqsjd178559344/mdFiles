@@ -77,6 +77,9 @@
     1.  返回*遍历器对象*
 5.  async[ES8/ES2017]
     1.  返回Promise *原始类型则用Promise.resolve 包裹*
+6.  Class
+    1.  constructor: 构造方法
+    2.  
 
 注:
 1. 空位处理:
