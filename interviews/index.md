@@ -351,7 +351,7 @@
 <!-- * finish -->
 9. 前端模块化:
    1. commonJS / AMD / CMD / ES6 区别?
-      1. commonJS: **运行时加载，输出值的拷贝，同步加载**
+      1. commonJS: **运行时加载 | 输出值的拷贝(缓存) | 同步加载**
          1. 特性
             1. 第一次加载某个模块时，Node会缓存该模块。以后再加载该模块，就直接从缓存取出该模块的module.exports属性。
             2. 一旦输出一个值，模块内部的变化就影响不到这个值。
@@ -371,14 +371,51 @@
           引入:
           define(function(require){ var m1 = require('./index) ; })
           ```
-      4. ES6:export (default) / import **编译时输出值的引用**
+      4. ES6:export (default) / import **编译时加载/静态加载 | 输出值的引用 | 异步加载 |自动严格模式**
+         1. 如多次重复执行同一句import语句，那么只会执行一次，而不会执行多次。
+         2. 重复导入某模块的不同模块时，会一次性加载
+         3. 快捷写法
+            ```
+            export {add as default};
+            // 等同于
+            // export default add;
+
+            // app.js
+            import { default as foo } from 'modules';
+            // 等同于
+            // import foo from 'modules';
+            ```
       ```
       commonJS的，引入的值，可以在外面更改，但是暴露的原始值不可以更改,也就是值的复制,复制出来是可以改的
       export的，不可以在外面给他重新赋值，但是如果它本身改变，外面的值也会改变，也就是值的引用
       ```  
+      eg:
+      ```
+      // CommonJS模块
+      let { stat, exists, readfile } = require('fs');
+
+      // 等同于
+      let _fs = require('fs'); // 整体加载
+      let stat = _fs.stat;
+      let exists = _fs.exists;
+      let readfile = _fs.readfile;
+
+      // ES6模块
+      import { stat, exists, readFile } from 'fs'; // 局部加载
+      ```
+      
+<!-- * finish -->
+10. script 加载
+   ```
+      1. <script src="path/to/myModule.js" defer></script> 
+      // defer: 渲染完再执行,按顺序执行
+      2. <script src="path/to/myModule.js" async></script>
+      // async: 下载完就执行,不保证顺序
+      3. <script type="module" src="./foo.js"></script> => ES6 模块 | defer
+   ```
 
 <!-- * finish -->
-1.   webSocket
+11.   webSocket
      1. 解决问题：
         1. 服务端主动推消息到客户端 / 客户端主动推消息到服务端
      2. 特点:
