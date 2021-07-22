@@ -351,7 +351,7 @@
 <!-- * finish -->
 9. 前端模块化:
    1. commonJS / AMD / CMD / ES6 区别?
-      1. commonJS: **运行时加载 | 输出值的拷贝(缓存) | 同步加载**
+      1. commonJS: **运行时加载 | 输出值的拷贝(缓存) | 同步加载 | this存在**
          1. 特性
             1. 第一次加载某个模块时，Node会缓存该模块。以后再加载该模块，就直接从缓存取出该模块的module.exports属性。
             2. 一旦输出一个值，模块内部的变化就影响不到这个值。
@@ -371,10 +371,11 @@
           引入:
           define(function(require){ var m1 = require('./index) ; })
           ```
-      4. ES6:export (default) / import **编译时加载/静态加载 | 输出值的引用 | 异步加载 |自动严格模式**
-         1. 如多次重复执行同一句import语句，那么只会执行一次，而不会执行多次。
-         2. 重复导入某模块的不同模块时，会一次性加载
-         3. 快捷写法
+      4. ES6:export (default) / import **编译时加载/静态加载 | 输出值的引用 | 异步加载 |自动严格模式 | !some**
+         1. some: this | arguments | require | module | exports | __filename | __dirname
+         2. 如多次重复执行同一句import语句，那么只会执行一次，而不会执行多次。
+         3. 重复导入某模块的不同模块时，会一次性加载
+         4. 快捷写法
             ```
             export {add as default};
             // 等同于
