@@ -3,6 +3,7 @@
      1. const:!变量提升, 暂时性死区 ，不可修改; (const 对象时，仍可更改该对象 [地址不可变])
      2. let: !变量提升, 暂时性死区  , 其下可修改 , 同一作用域下不可重复声明
      3. var: 全局可用，均可修改，挂载到this上(默认为window)
+     注:var let 之间最好用let; let const 之间最好用 const; const JS编译器会对其进行优化,可提高程序运行效率
 2. 解构赋值
 3. String
    1. 增添了遍历器接口[Iterator]，可用 for..of 循环
@@ -64,20 +65,20 @@
        2.  getPrototypeOf
    5.  *fromEntries* => Object.entries 逆操作
 10. 运算符
-    1.  **: a**2 === a ** a
+    1.  **: a**2 === a * a
     2.  ?.: a?.b?.c => 如果取到null||undefined, 则return undefined [ES11/ES2020]
     3.  ??: a??b => a==null || a== undefined 时 [ES11/ES2020]
 11. Symbol
-1.  Set/Map
-2.  Promise
-3.  Iterator 
+12. Set/Map
+13. Promise
+14. Iterator 
    6.  可使用rest
    7.  可遍历 [for..of]
-4.  Generator
+15. Generator
     1.  返回*遍历器对象*
-5.  async[ES8/ES2017]
+16. async[ES8/ES2017]
     1.  返回Promise *原始类型则用Promise.resolve 包裹*
-6.  Class
+17. Class
     1.  constructor: 构造方法,默认添加
     2.  extends: 继承
 
