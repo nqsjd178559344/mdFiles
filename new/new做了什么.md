@@ -7,8 +7,9 @@ let f = new F()
 
 function myNew(fn) {
     let obj = {}
+    const args = Array.from(arguments).slice(1)
     obj.__proto__ = fn.prototype
-    const res = fn.apply(obj)
+    const res = fn.apply(obj, args)
     return res && typeof res === 'object' ? res : obj
 }
 
