@@ -81,6 +81,19 @@
 17. Class
     1.  constructor: 构造方法,默认添加
     2.  extends: 继承
+18. Proxy
+    1.  不可修改!configurable && !writable 的属性
+    2.  操作
+        1.  get(target,propKey,receiver)
+        2.  set(target,propKey,value,receiver) => *return boolean*
+        3.  has(target,propKey) => *return boolean* **拦截 propKey in target 操作**
+        4.  deleteProperty(target,propKey) => *return boolean* **拦截 delete proxy[propKey] 操作**
+        5.  ownKeys(target) => *return Array* **拦截Object.keys | for in 等**
+        6.  apply(target.object,arg) **拦截 proxy(...arg) | proxy.call(object,...arg) | proxy.apply(object,arg)**
+        7.  constructor(target,args) **拦截new proxy(arg)等**
+        8.  getPrototypeOf(target) **拦截Object.getPrototypeOf(proxy)**
+        9.  setPrototypeOf(target,proto) **拦截Object.setPrototypeOf(proxy,proto)**
+        10. defineProperty(target,propKey,propDesc)
 
 注:
 1. 空位处理:
