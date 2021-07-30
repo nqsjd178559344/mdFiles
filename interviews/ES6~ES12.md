@@ -99,7 +99,7 @@
         4.  deleteProperty(target,propKey) => *return boolean* **拦截 delete proxy[propKey] 操作**
         5.  ownKeys(target) => *return Array* **拦截Object.keys | for in 等**
         6.  apply(target.object,arg) **拦截 proxy(...arg) | proxy.call(object,...arg) | proxy.apply(object,arg)**
-        7.  constructor(target,args) **拦截new proxy(arg)等**
+        7.  construct(target,args) **拦截new proxy(arg)等**
         8.  getPrototypeOf(target) **拦截Object.getPrototypeOf(proxy)**
         9.  setPrototypeOf(target,proto) **拦截Object.setPrototypeOf(proxy,proto)**
         10. defineProperty(target,propKey,propDesc)
