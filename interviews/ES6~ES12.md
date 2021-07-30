@@ -61,8 +61,17 @@
    2.  is()
    3.  assign()
    4.  __proto__
-       1.  setPrototypeOf
+       1.  setPrototypeOf(obj,proto) =>**obj.__proto__ = proto**
+           ```
+           let me = {}
+           Object.setPrototypeOf(me, Father.prototype) 
+           Father.prototype = me.__proto__ = Object.getPrototypeOf(me)
+           ```
        2.  getPrototypeOf
+           ```
+           let me = new Father()
+           Father.prototype = me.__proto__ = Object.getPrototypeOf(me)
+           ```
    5.  *fromEntries* => Object.entries 逆操作
 10. 运算符
     1.  **: a**2 === a * a
