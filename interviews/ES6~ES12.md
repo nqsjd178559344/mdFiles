@@ -99,11 +99,28 @@
         4.  deleteProperty(target,propKey) => *return boolean* **拦截 delete proxy[propKey] 操作**
         5.  ownKeys(target) => *return Array* **拦截Object.keys | for in 等**
         6.  apply(target.object,arg) **拦截 proxy(...arg) | proxy.call(object,...arg) | proxy.apply(object,arg)**
-        7.  construct(target,args) **拦截new proxy(arg)等**
+        7.  construct(target,args,newTarget) **拦截new proxy(arg)等**
+            ```
+            let p = new P() => newTarget = p
+            ```
         8.  getPrototypeOf(target) **拦截Object.getPrototypeOf(proxy)**
         9.  setPrototypeOf(target,proto) **拦截Object.setPrototypeOf(proxy,proto)**
         10. defineProperty(target,propKey,propDesc)
-    3.  Proxy 与 Object.defineProperty 区别
+        11. getOwnPropertyDescriptor
+        12. isExtensible
+        13. preventExtensions
+    3.  Proxy.revocable() 可取消操作
+        ```
+        let target = {},handler={};
+        let {proxy, revoke} = Proxy.revocable(target, handler);
+        proxy.a = 1
+        revoke()
+        proxy.a = 1 // 报错
+        ```
+    4. this
+       1. 内部this指向proxy
+       2. 拦截函数[get/set]指向handler
+    5.  Proxy 与 Object.defineProperty 区别
         1.  Object.defineProperty为ES5新增,Proxy为ES6新增,二者兼容度不同,且Proxy的某些功能不可由polyfill后提供
         2.  Object.defineProperty可通过对原对象的更改所触发,Proxy仅可通过对代理对象的更改所触发
         3.  Object.defineProperty仅可监听对象上的某属性,Proxy可监听全部的引用数据类型[Object/Array/Function]
