@@ -18,7 +18,7 @@
       7. trim: 消除string 首尾空格
       8. trimStart/trimLeft [ES10/ES2019]
       9. trimEnd/trimRight  [ES10/ES2019]
-      10. matchAll
+      10. matchAll [ES11/ES2120]
       11. replaceAll [ES12/ES2121]/replace区别
           1.  replaceAll(subStr, newSubStr):一键替换所有
           2.  replace(regexp|subStr, newSubStr|function): 默认只替换第一个
@@ -32,8 +32,13 @@
       1. trunc => 整数部分 || NaN
       2. sign => +1 || -1 || +0 || -0 || NaN
       3. cbrt(X) => X的立方根
-6. BigInt[ES11/ES2120]
-7. Function
+6. BigInt [ES11/ES2120]
+7. 动态imports [ES11/ES2120]
+   1. export * as {myModule} from "./test-module.js";
+8. globalThis [ES11/ES2120]
+   1. 浏览器 => window
+   2. nodejs => global
+9.  Function
    1. rest[...]
    2. 如函数参数使用了[默认值]/[解构赋值]/[扩展运算符], 那么函数内部就不能显式设定为严格模式
    3. name
@@ -43,7 +48,7 @@
       2. 不可使用new
       3. 不可使用arguments
       4. 不可使用yield
-8. Array
+11. Array
    1. ... => 取代 apply
    2. find
    3. findIndex
@@ -52,15 +57,15 @@
    6. includes
    7. flat/flatMap
    8. Array.from => 转换类数组对象(y存在length属性)
-9. Object
-   1.  getOwnPropertyDescriptor => 获取描述对象
+12. Object
+   1. getOwnPropertyDescriptor => 获取描述对象
        1.  value
        2.  writable
        3.  enumerable *可枚举性*
        4.  configurable
-   2.  is()
-   3.  assign()
-   4.  __proto__
+   2. is()
+   3. assign()
+   4. __proto__
        1.  setPrototypeOf(obj,proto) =>**obj.__proto__ = proto**
            ```
            let me = {}
@@ -72,25 +77,25 @@
            let me = new Father()
            Father.prototype = me.__proto__ = Object.getPrototypeOf(me)
            ```
-   5.  *fromEntries* => Object.entries 逆操作
-10. 运算符
+   5. *fromEntries* => Object.entries 逆操作
+13. 运算符
     1.  **: a**2 === a * a
     2.  ?.: a?.b?.c => 如果取到null||undefined, 则return undefined [ES11/ES2020]
     3.  ??: a??b => a==null || a== undefined 时 [ES11/ES2020]
-11. Symbol
-12. Set/Map
-13. Promise
-14. Iterator 
-   6.  可使用rest
-   7.  可遍历 [for..of]
-15. Generator
+14. Symbol
+15. Set/Map
+16. Promise
+17. Iterator 
+   1.  可使用rest
+   2.  可遍历 [for..of]
+18. Generator
     1.  返回*遍历器对象*
-16. async[ES8/ES2017]
+19. async[ES8/ES2017]
     1.  返回Promise *原始类型则用Promise.resolve 包裹*
-17. Class
+20. Class
     1.  constructor: 构造方法,默认添加
     2.  extends: 继承
-18. Proxy
+21. Proxy
     1.  不可修改!configurable && !writable 的属性
     2.  操作
         1.  get(target,propKey,receiver)
