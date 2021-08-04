@@ -130,6 +130,7 @@
         2.  Object.defineProperty可通过对原对象的更改所触发,Proxy仅可通过对代理对象的更改所触发
         3.  Object.defineProperty仅可监听对象上的某属性,Proxy可监听全部的引用数据类型[Object/Array/Function]
         4.  Object.defineProperty仅可监听对象的某属性上的取值和设置,Proxy可监听除此之外的多种操作
+22. Reflect
 
 注:
 1. 空位处理:
