@@ -514,6 +514,12 @@
 ## Vue
 1. Vue的生命周期？
 2. 关于技术栈vue和react，你倾向于用那种，为什么？可以简单聊一聊你对这两种框架各有的优势。
+3. VUEX
+   1. State
+   2. Getters
+   3. Mutations
+   4. Actions
+   5. Modules
 
 ## TS
 1. interface / type 区别
