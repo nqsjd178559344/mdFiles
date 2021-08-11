@@ -453,6 +453,7 @@
    4.  错误处理
        1.  static getDerivedStateFromError()
        2. * componentDidCatch()
+   5. ![图](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7083cad1a8a846aba4d9aed65f64e024~tplv-k3u1fbpfcp-watermark.awebp)
    
 <!-- * finish -->
 2. React的Key有什么作用？（简单）
