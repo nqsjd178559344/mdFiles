@@ -83,9 +83,10 @@
 
 16. *fromEntries* => Object.entries 逆操作
 17. 运算符
-    1. **: a**2 === a * a
-    2. ?.: a?.b?.c => 如果取到null||undefined, 则return undefined [ES11/ES2020]
-    3. ??: a??b => a==null || a== undefined 时 [ES11/ES2020]
+    1. ~~: [除NaN/Infinity等外]如!number，则为0;否则为number本身 ==非ES6+==
+    2. **: a**2 === a * a
+    3. ?.: a?.b?.c => 如果取到null||undefined, 则return undefined [ES11/ES2020]
+    4. ??: a??b => a == null || a == undefined 时 [ES11/ES2020]
 18. Symbol
 19. Set/Map
 20. Promise
