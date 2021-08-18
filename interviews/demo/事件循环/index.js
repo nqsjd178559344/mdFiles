@@ -24,9 +24,9 @@
 
 //         console.log('promise2');
 
-//         resolve();
+//         resolve('promise3');
 
-//     })
+//     }).then(res=> console.log(res))
 
 // }
 
@@ -45,13 +45,15 @@
 // console.log('script end');
 // console.log('script end2');
 
-/**
+/** 
  * todo 答案
- * async1 start 
- * promise2 
+ * async1 start
+ * promise2
  * script end
  * script end2
+ * promise3
  * async1 end
+ * UI render
  * setTimeout start
  * promise1 start
  * setTimeout end
@@ -190,72 +192,74 @@
  * 10
  * 5
  * 6
+ * UI渲染
  * 8
  * 9
+ * UI渲染
  * 3
  * 
  */
 
 var resolveAfter2Seconds = function () {
-    console.log("starting slow promise");
-    return new Promise(resolve => {
-        setTimeout(function () {
-            resolve("slow");
-            console.log("slow promise is done");
-        }, 2000);
-    });
+  console.log("starting slow promise");
+  return new Promise(resolve => {
+    setTimeout(function () {
+      resolve("slow");
+      console.log("slow promise is done");
+    }, 2000);
+  });
 };
 
 var resolveAfter1Second = function () {
-    console.log("starting fast promise");
-    return new Promise(resolve => {
-        setTimeout(function () {
-            resolve("fast");
-            console.log("fast promise is done");
-        }, 1000);
-    });
+  console.log("starting fast promise");
+  return new Promise(resolve => {
+    setTimeout(function () {
+      resolve("fast");
+      console.log("fast promise is done");
+    }, 1000);
+  });
 };
 
 var sequentialStart = async function () {
-    console.log('==SEQUENTIAL START==');
+  console.log('==SEQUENTIAL START==');
 
-    const slow = await resolveAfter2Seconds();
-    console.log(slow);
+  const slow = await resolveAfter2Seconds();
+  console.log(slow);
 
-    const fast = await resolveAfter1Second();
-    console.log(fast);
+  const fast = await resolveAfter1Second();
+  console.log(fast);
 }
 
 var concurrentStart = async function () {
-    console.log('==CONCURRENT START with await==');
-    const slow = resolveAfter2Seconds();
-    const fast = resolveAfter1Second();
+  console.log('==CONCURRENT START with await==');
+  const slow = resolveAfter2Seconds();
+  const fast = resolveAfter1Second();
 
-    console.log(await slow); 
-    console.log(await fast);
+  console.log(await slow);
+  console.log(await fast);
 }
 
 var concurrentPromise = function () {
-    console.log('==CONCURRENT START with Promise.all==');
-    return Promise.all([resolveAfter2Seconds(), resolveAfter1Second()]).then((messages) => {
-        console.log(messages[0]);
-        console.log(messages[1]);
-    });
+  console.log('==CONCURRENT START with Promise.all==');
+  return Promise.all([resolveAfter2Seconds(), resolveAfter1Second()]).then((messages) => {
+    console.log(messages[0]);
+    console.log(messages[1]);
+  });
 }
 
 var parallel = async function () {
-    console.log('==PARALLEL with await Promise.all==');
+  console.log('==PARALLEL with await Promise.all==');
 
-    await Promise.all([
-        (async () => console.log(await resolveAfter2Seconds()))(),
-        (async () => console.log(await resolveAfter1Second()))()
-    ]);
+  await Promise.all([
+    (async () => console.log(await resolveAfter2Seconds()))(),
+    (async () => console.log(await resolveAfter1Second()))()
+  ]);
 }
 
 var parallelPromise = function () {
-    console.log('==PARALLEL with Promise.then==');
-    resolveAfter2Seconds().then((message) => console.log(message));
-    resolveAfter1Second().then((message) => console.log(message));
+  console.log('==PARALLEL with Promise.then==');
+  resolveAfter2Seconds().then((message) => console.log(message));
+  resolveAfter1Second().then((message) => console.log(message));
 }
 
 sequentialStart();
@@ -266,35 +270,35 @@ setTimeout(concurrentPromise, 7000);
 
 setTimeout(parallel, 10000);
 
-setTimeout(parallelPromise, 13000); 
+setTimeout(parallelPromise, 13000);
 
-/** 
- * todo 答案
+
+/**
+ * todo
  * ! sequentialStart
  * ==SEQUENTIAL START==
  * starting slow promise
  * slow promise is done
  * slow
- * 
  * starting fast promise
  * fast promise is done
  * fast
  * 
- * !concurrentStart
+ * ! concurrentStart
  * ==CONCURRENT START with await==
  * starting slow promise
- * starting fast promise
+ * tarting fast promise
  * fast promise is done
  * slow promise is done
  * slow
  * fast
  * 
- * !concurrentPromise
+ * ! concurrentPromise
  * ==CONCURRENT START with Promise.all==
  * starting slow promise
  * starting fast promise
- * @fast promise is done
- * @slow promise is done
+ * * slow promise is done => fast promise is done
+ * * fast promise is done => slow promise is done
  * slow
  * fast
  * 
@@ -302,10 +306,10 @@ setTimeout(parallelPromise, 13000);
  * ==PARALLEL with await Promise.all==
  * starting slow promise
  * starting fast promise
- * @fast promise is done
- * @fast
- * @slow promise is done 
- * @slow
+ * fast promise is done
+ * * slow promise is done => fast
+ * * fast => slow promise is done
+ * slow
  * 
  * !parallelPromise
  * ==PARALLEL with Promise.then==
@@ -314,7 +318,57 @@ setTimeout(parallelPromise, 13000);
  * fast promise is done
  * fast
  * slow promise is done
- * slow 
+ * slow
+ * 
+ */
+
+/**
+ * todo 答案
+ * ! sequentialStart
+ * ==SEQUENTIAL START==
+ * starting slow promise
+ * slow promise is done
+ * slow
+ *
+ * starting fast promise
+ * fast promise is done
+ * fast
+ *
+ * !concurrentStart
+ * ==CONCURRENT START with await==
+ * starting slow promise
+ * starting fast promise
+ * fast promise is done
+ * slow promise is done
+ * slow
+ * fast
+ *
+ * !concurrentPromise
+ * ==CONCURRENT START with Promise.all==
+ * starting slow promise
+ * starting fast promise
+ * @fast promise is done
+ * @slow promise is done
+ * slow
+ * fast
+ *
+ * !parallel
+ * ==PARALLEL with await Promise.all==
+ * starting slow promise
+ * starting fast promise
+ * @fast promise is done
+ * @fast
+ * @slow promise is done
+ * @slow
+ *
+ * !parallelPromise
+ * ==PARALLEL with Promise.then==
+ * starting slow promise
+ * starting fast promise
+ * fast promise is done
+ * fast
+ * slow promise is done
+ * slow
  */
 
 
