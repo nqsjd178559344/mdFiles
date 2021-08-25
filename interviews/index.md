@@ -564,3 +564,5 @@
       3. 声明 typeof A
    3. interface可以 但type 不可
       1. 声明合并
+## taro
+3. 1/2 与 3版本的区别?
