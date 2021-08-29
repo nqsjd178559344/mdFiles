@@ -52,3 +52,5 @@
       1. 与 async 类似,Generator具备传染性[如想子事件同步更新,父事件如想同步获取子事件结果,则父事件也需使用async]
       2. Generator的中间状态与上下关联
    
+   https://react.iamkasong.com/
+   
