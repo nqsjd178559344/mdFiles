@@ -51,6 +51,13 @@
    3. 为何不用 Generator:
       1. 与 async 类似,Generator具备传染性[如想子事件同步更新,父事件如想同步获取子事件结果,则父事件也需使用async]
       2. Generator的中间状态与上下关联
-   
+5. Fiber = 虚拟DOM
+   1. React Fiber: React内部自实现的一套状态更新机制,支持任务不同优先级,可中断/恢复,并且恢复后可复用之前的中间状态
+6. 双缓存
+   1. 解释: 在内存中构建并直接替换
+   2. 双缓存Fiber树 **二者通过 *alternate* 属性互相链接**
+      1. currentFiber => 屏幕中正在显示的
+      2. workInProgressFiber => 内存中构建的
+
    https://react.iamkasong.com/
    
