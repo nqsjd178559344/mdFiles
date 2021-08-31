@@ -58,6 +58,38 @@
    2. 双缓存Fiber树 **二者通过 *alternate* 属性互相链接**
       1. currentFiber => 屏幕中正在显示的
       2. workInProgressFiber => 内存中构建的
+   *React应用的根节点通过使current指针在不同Fiber树的rootFiber间切换来完成current Fiber树指向的切换。*
+   流程:
+      1. mount:
+         1. 创建fiberRootNode[整个应用的根节点]与rootFiber[当前组件树的根节点]
+         2. fiberRootNode.current = rootFiber , 此时rootFiber无子节点
+      2. render:
+         1. 尝试复用且构建新的 workInProgressFiber树[复用currentFiber对应的节点数据]
+         2. fiberRootNode.current = workInProgressFiber树
+         3. workInProgressFiber树 在 commit阶段 渲染到页面
+         4. currentFiber = workInProgressFiber树
+      3. update:
+         1. 开启新的render阶段[重复上诉操作]
+7. render阶段
+   1. 调用 performSyncWorkOnRoot[同步] 与 performConcurrentWorkOnRoot[异步], 二者调用 performUnitOfWork()  *performUnitOfWork: 创建下一个Fiber节点并赋值给workInProgress，并将workInProgress与已创建的Fiber节点连接起来构成Fiber树。*
+   2. performUnitOfWork ![图例](https://react.iamkasong.com/img/fiber.png)
+      1. 递: beginWork => 根据传入的Fiber节点创建子Fiber节点，并将这两个Fiber节点连接起来。当无子节点时归
+         判断是mount阶段还是update阶段 => current === null ? mount : update
+            1. mount: 根据fiber.tag 创建Fiber子节点,**FunctionComponent/ClassComponent/HostComponent组件类型调用 reconcileChildren()**
+            2. update: 满足*oldProps === newProps && workInProgress.type === current.type || 当前Fiber节点优先级不够*时可复用current的子节点 作为 workInProgress 的 子节点,否则走新建逻辑
+            reconcileChildren: 为生成的Fiber节点带上effectTag属性 => effectTag: 要执行的DOM操作
+            ![beginWork流程](https://react.iamkasong.com/img/beginWork.png)
+
+            
+      2. 归: completeWork => 处理Props: *如onClick等回调函数的注册/style/children等* => 赋值给 workInProgress.updateQueue 数组
+         1. mount:
+            1. 生成Fiber节点对应的DOM节点
+            2. 将子DOM节点插入新生成的DOM节点中
+            3. 处理Props 
+         2. update
+            1. 处理Props
+            ![completeWork流程](https://react.iamkasong.com/img/completeWork.png)
+
 
    https://react.iamkasong.com/
    
