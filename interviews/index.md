@@ -457,7 +457,7 @@
    
 <!-- * finish -->
 2. React的Key有什么作用？（简单）
-   1. diff算法时标明当前数据有无变更
+   diff算法时标明当前数据有无变更
    
 <!-- * finish -->
 3. this.setState有几个参数？第二个参数是干什么用的？（简单）
@@ -468,7 +468,10 @@
       2. callback:
          1. 在 setState 完成合并并重新渲染组件后执行。通常，我们建议使用 componentDidUpdate() 来代替此方式。*
    
-4. 数组渲染是否能使用index？为什么？（简单）
+4. this.setState什么时候是异步,什么时候是同步? 异步 => 多个state批量更新
+   在由React引发的生命周期函数/事件处理[onClick等]时异步,否则同步[可自己addEventListener添加监听]
+   
+5. 数组渲染是否能使用index？为什么？（简单）
     如果显示的仅为item，则可使用index;其他情况最好不要
    
 <!-- * finish -->
