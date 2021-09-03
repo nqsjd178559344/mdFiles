@@ -458,9 +458,13 @@
 <!-- * finish -->
 2. React的Key有什么作用？（简单）
    diff算法时标明当前数据有无变更
+
+<!-- * finish -->
+3. React的Fragment 与 <> </> 有什么区别？（简单）
+   Fragment可指定Key,后者不可
    
 <!-- * finish -->
-3. this.setState有几个参数？第二个参数是干什么用的？（简单）
+4. this.setState有几个参数？第二个参数是干什么用的？（简单）
    1. 两个: setState(updater, [callback])
       1. updater: 
          1. { quantity:2 }
@@ -468,14 +472,14 @@
       2. callback:
          1. 在 setState 完成合并并重新渲染组件后执行。通常，我们建议使用 componentDidUpdate() 来代替此方式。*
    
-4. this.setState什么时候是异步,什么时候是同步? 异步 => 多个state批量更新
+5. this.setState什么时候是异步,什么时候是同步? 异步 => 多个state批量更新
    在由React引发的生命周期函数/事件处理[onClick等]时异步,否则同步[可自己addEventListener添加监听]
    
-5. 数组渲染是否能使用index？为什么？（简单）
+6. 数组渲染是否能使用index？为什么？（简单）
     如果显示的仅为item，则可使用index;其他情况最好不要
    
 <!-- * finish -->
-5. Component，PureComponent，FunctionComponent分别是什么？有些什么样的特点？作用？（一般）
+7. Component，PureComponent，FunctionComponent分别是什么？有些什么样的特点？作用？（一般）
    **原答案**
    1. Component: 有自己独立的状态，业务逻辑，比价重。
    2. PureComponent: 简略的实现了一套浅层对比的shouldComponentUpdate。对象引用不改变，属性改变就不起作用了。
@@ -494,7 +498,7 @@
    2. PureComponent: Component加强版，对 props 和 state 进行浅层比较[不会比较对象深层次的值是否相等]，并减少了跳过必要更新的可能性。(自动进行 shouldComponentUpdate)
    3. FunctionComponent: 函数式组件;
    
-6. React Hook参数
+8. React Hook参数
    1. 基本
       1. useState
       2. useEffect
@@ -508,7 +512,7 @@
       6. **useDebugValue**
       7. **useImperativeHandle**
    
-7. mobx-react
+9. mobx-react
    1. 参数
       1. @observable
       2. @computed
