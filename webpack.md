@@ -70,7 +70,8 @@ ___
       ```js
       // 进行热更新
       if (module.hot) {
-          module.hot.accept('./list.js', () => { // 此页面更改则部分更改/否则全部更改
+          module.hot.accept('./list.js', () => { // 此页面更改则部分更改/否则全部更改 
+          // 不可使用require()
               console.log('list'),
                   list()
           })
