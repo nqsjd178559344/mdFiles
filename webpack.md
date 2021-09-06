@@ -67,7 +67,18 @@ ___
    2. devServer中 hot:true
    3. plugins: HotModuleReplacementPlugin
    4. js模块中增加 module.hot.accept增加hmr代码
-9.  Babel   
+      ```js
+      // 进行热更新
+      if (module.hot) {
+          module.hot.accept('./list.js', () => { // 此页面更改则部分更改/否则全部更改
+              console.log('list'),
+                  list()
+          })
+          // !关闭热更新:  
+          // module.hot.decline("./list.js")
+      }
+      ```
+1.  Babel   
     1.  意义: js编译器
     2.  安装: npm install @babel/core[babel核心] @babel-cli[命令行中使用] @babel/preset-env[转换ES5+语法] babel-loader
 ———————
