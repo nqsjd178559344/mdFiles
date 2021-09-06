@@ -94,7 +94,12 @@ ___
 ### webpack高级概念
 1. TreeShaking[摇树优化] => console.log || 无用代码 [默认:development模式时未使用代码也会被打包入]
    1. 注意: **依赖ES6模块语法** | 只打包需要的,提升速度
-   2. 详情看webpack.config
+   ```js
+    //! webpack默认打包全部代码[包括未使用的代码]
+    //  解决方式:
+    //  1. webpack3: 插件:uglifyjsWebpackPlugins
+    //  2. webpack4: mode:production
+   ```
 
 ———————
 2. dev | pro 区分: <共同点>: 相同入口 | 部分相同的代码处理
@@ -112,7 +117,7 @@ ___
    3. **配置打包配置位置**:webpack|webpack-dev-server --config ./config/prod.js
 3. 打包优化[js]
    1. 入口配置: entry多入口 + webpack.ProvidePlugin
-   2. 抽取公共代码: webpack4:**splitChunksPlugins:打包速度快** webpack4-:commonChunksPlugin
+   2. 抽取公共代码: webpack4:**splitChunksPlugins:打包速度快** webpack4 -:commonChunksPlugin
       1. 在webpack.config中配置 optimization 
    3. 动态加载[按需加载 | 懒加载] : 配置webpackChunkName + dynamicImport[可能需要]
       ```js
@@ -123,7 +128,7 @@ ___
    4. 自动注入
 
 ———————
-1. css代码分割
+4. css代码分割
    1. 将css单独打包: mini-css-extract-plugin@0.9.0
    2. css代码压缩: optimize-css-assets-webpack-plugin@5.0.3 => 配置进 optimization.minimizer
       1. **该操作会导致 prod 模式下 js代码不压缩 => optimization默认功能失效**
