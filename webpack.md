@@ -7,8 +7,7 @@
    4. 模块合并
    5. 代码校验 => 规范代码
    6. 自动发布
-2. webpack 本质:
-    1. 基于nodeJs的静态模块打包器
+2. webpack 本质 => 基于nodeJs的静态模块打包器
 3. 提升Webpack打包速度 => nodeJs && Webpack 版本尽量高
 4. webpack 参数
    1. 入口: entry
@@ -73,13 +72,13 @@ ___
           module.hot.accept('./list.js', () => { // 此页面更改则部分更改/否则全部更改 
           // 不可使用require()
               console.log('list'),
-                  list()
+              list()
           })
           // !关闭热更新:  
           // module.hot.decline("./list.js")
       }
       ```
-1.  Babel   
+9.  Babel   
     1.  意义: js编译器
     2.  安装: npm install @babel/core[babel核心] @babel-cli[命令行中使用] @babel/preset-env[转换ES5+语法] babel-loader
 ———————
@@ -117,11 +116,11 @@ ___
    3. **配置打包配置位置**:webpack|webpack-dev-server --config ./config/prod.js
 3. 打包优化[js]
    1. 入口配置: entry多入口 + webpack.ProvidePlugin
-   2. 抽取公共代码: webpack4:**splitChunksPlugins:打包速度快** webpack4 -:commonChunksPlugin
+   2. 抽取公共代码: webpack4:**splitChunksPlugins:打包速度快** webpack4-:commonChunksPlugin
       1. 在webpack.config中配置 optimization 
    3. 动态加载[按需加载 | 懒加载] : 配置webpackChunkName + dynamicImport[可能需要]
       ```js
-      import(/*webpackChunkName:'jquery'*/'jquery').then(({ default: $ })=>{ //! 如报错 dynamicImport,则先安装 @babel/plugin-syntax-dynamic-import并于。babelrc 中配置
+      import(/*webpackChunkName:'jquery'*/'jquery').then(({ default: $ })=>{ //! 如报错 dynamicImport,则先安装 @babel/plugin-syntax-dynamic-import并于 .babelrc 中配置
          console.log($.length)
       })
       ```
@@ -136,6 +135,5 @@ ___
 2. 代码包可视化分析工具: webpack-bundle-analyzer => require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 3. 获取环境参数:
    1. 官网=>指南=>环境变量[--env goal=local --env production --progress Tip],在 package.json 中 配置指令 | yargs
-   2. 
    
    
