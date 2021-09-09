@@ -430,6 +430,15 @@
         5. 接收数据后的回调: ws.onmessage
         6. 报错时的回调: ws.onerror
 
+
+12. JS的事件机制[顺序执行] =>  e.stopPropagation();//阻止冒泡|捕获
+    1.  事件捕获: 
+    2.  目标
+    3.  事件冒泡: 子元素的事件被触发,父元素的相同事件也会被触发 
+
+    4.  通用: 冒泡 | 事件委托 e.preventDefault() => 阻止默认操作
+    5.  事件委托: 事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素。当点击子元素，根据"事件冒泡"，该子元素的父级元素捕获了该次点击事件，并触发自己的方法。
+
 ## React
 <!-- * finish -->
 1. React的生命周期以及发生的顺序？（简单）
@@ -512,11 +521,29 @@
       6. **useDebugValue**
       7. **useImperativeHandle**
    
-9. mobx-react
-   1. 参数
-      1. @observable
-      2. @computed
-      3. @action
+9. React事件
+   1.  合成事件
+       1.  意义: 避免DOM上绑定过多的事件处理函数[占用内存 && 影响页面响应] && 屏蔽浏览器不同造成事件不同, 而生成的中间件
+       2.  原理: 
+           1.  在document中监听所支持的事件,当事件调用并冒泡到document时,React调用真正的处理函数执行
+           2.  **合成事件的捕获阶段同样晚于原生事件的捕获阶段**
+
+       3.  图例: ![图例](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/9/8792eeae6dc6011274986acf42a76b15~tplv-t2oaga2asx-watermark.awebp)
+   2.  原生事件
+       1.  思路: componentDidMount阶段/ref的函数执行阶段进行绑定至真实DOM操作，在componentWillUnmount阶段进行解绑操作以避免内存泄漏。
+       2.  在Class组件中[ReactDOM.findDOMNode(component)仅支持Class组件], 进行绑定操作
+          ```
+           componentDidMount() {
+              const $this = ReactDOM.findDOMNode(this)
+              $this.addEventListener('click', this.onDOMClick, false)
+          }
+          ```
+   3. 响应顺序
+      1. 捕获: 先监听的原生事件执行,捕获到current元素后,合成事件执行=> .addEventListener("click", this.onDOMClick, true);
+      2. 冒泡: 先监听的原生事件执行,冒泡到document后,合成事件执行 => .addEventListener("click", this.onDOMClick, false);
+      3. 如合成事件|原生事件执行时e.stopPropagation(),则后续事件不会触发
+   
+
 
 
 ## Vue
@@ -529,6 +556,13 @@
    4. Actions
    5. Modules
 5. 关于技术栈vue和react，你倾向于用那种，为什么？可以简单聊一聊你对这两种框架各有的优势。
+
+## Store
+1. mobx-react
+   1. 参数
+      1. @observable
+      2. @computed
+      3. @action
 
 ## TS
 1. interface / type 区别
