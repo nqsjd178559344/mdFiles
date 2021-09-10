@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" onkeypress="onKeyPress(event)">
+    <script>
+        // BroadCast Channel
+        // const bc = new BroadcastChannel('张发发')
+
+        // bc.onmessage = function (e) {
+        //     console.log(e)
+        //     console.log(e.data, e.from)
+        // }
+
+        // function onKeyPress(e) {
+        //     const { keyCode, target: { value } } = e
+        //     if (keyCode === 13) {
+        //         console.log(value)
+        //         bc.postMessage(value);
+        //     }
+        // }
+        // Service Worker
+        function onKeyPress(e) {
+            const { keyCode, target: { value } } = e
+            if (keyCode === 13) {
+                // console.log(value)
+                const _this = navigator.serviceWorker.controller // 如不为同级目录, 此时为null
+                // console.log(_this, '存在', this.controller)
+                if (_this) {
+                    _this.postMessage(value)
+                }
+            }
+        }
+        // console.log(navigator.serviceWorker, 'serviceWorker')
+        if (navigator.serviceWorker) {
+            // navigator.serviceWorker.then(res => {
+            //     console.log(navigator.serviceWorker, 'serviceWorker')
+
+            // })
+            serviceWorkerFun()
+
+        }
+
+        function serviceWorkerFun() {
+            navigator.serviceWorker.register('sw.js')
+                // .then(res => {
+                //     return new Promise((resolve, reject) => {
+                //         const timer = setInterval(function () {
+                //             if (res.active) {
+                //                 console.log('已打开')
+                //                 clearInterval(timer)
+                //                 resolve(res.active)
+                //             }
+                //         }, 100)
+                //     })
+                //     console.log('Service Worker 注册成功')
+                // })
+                .then(sw => {
+                    console.log('Service Worker 注册成功')
+                    // sw.postMessage('enter')
+                })
+            // navigator.serviceWorker.addEventListener('message', function ({ data }) {
+            //     console.log(data, 'data')
+            // })
+            navigator.serviceWorker.onmessage = function (e) {
+                console.log(e)
+                console.log(e.data)
+            }
+        }
+
+        // navigator.serviceWorker.addEventListener("controllerchange", (evt) => { // 刷新时调用
+        //     console.log("controllerchange");
+        //     this.controller = navigator.serviceWorker.controller;
+        // });
+
+    </script>
+</body>
+
+</html>
