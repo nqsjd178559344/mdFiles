@@ -10,22 +10,24 @@
 
 <body>
     <input type="text" onkeypress="onKeyPress(event)">
-    <script>
-        // BroadCast Channel
-        // const bc = new BroadcastChannel('张发发')
+    <!-- <script>
+         BroadCast Channel
+         const bc = new BroadcastChannel('张发发')
 
-        // bc.onmessage = function (e) {
-        //     console.log(e)
-        //     console.log(e.data, e.from)
-        // }
+         bc.onmessage = function (e) {
+             console.log(e)
+             console.log(e.data, e.from)
+         }
 
-        // function onKeyPress(e) {
-        //     const { keyCode, target: { value } } = e
-        //     if (keyCode === 13) {
-        //         console.log(value)
-        //         bc.postMessage(value);
-        //     }
-        // }
+         function onKeyPress(e) {
+             const { keyCode, target: { value } } = e
+             if (keyCode === 13) {
+                 console.log(value)
+                 bc.postMessage(value);
+             }
+         }    
+    </script> -->
+    <!-- <script>
         // Service Worker
         function onKeyPress(e) {
             const { keyCode, target: { value } } = e
@@ -38,18 +40,12 @@
                 }
             }
         }
-        // console.log(navigator.serviceWorker, 'serviceWorker')
         if (navigator.serviceWorker) {
             // navigator.serviceWorker.then(res => {
             //     console.log(navigator.serviceWorker, 'serviceWorker')
 
             // })
-            serviceWorkerFun()
-
-        }
-
-        function serviceWorkerFun() {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('serviceWorker.js')
                 // .then(res => {
                 //     return new Promise((resolve, reject) => {
                 //         const timer = setInterval(function () {
@@ -80,6 +76,46 @@
         //     this.controller = navigator.serviceWorker.controller;
         // });
 
+    </script> -->
+    <!-- <script>
+        // LocalStorage
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'msg') {
+                console.log(e.newValue)
+            }
+        })
+        function onKeyPress(e) {
+            const { keyCode, target: { value } } = e
+            if (keyCode === 13) {
+                //  console.log(value)
+                window.localStorage.setItem('msg', value)
+                //  bc.postMessage(value);
+            }
+        }
+    </script> -->
+    <script>
+        // Shared Worker
+        const sharedWorker = new SharedWorker('sharedWorker.js', 'msg')
+        setInterval(function () {
+            sharedWorker.port.postMessage({ get: true })
+        }, 1000)
+        // sharedWorker.onmessage = function (e) {
+        //     console.log(e.data, 'Shared Worker')
+        // }
+
+        // 监听 get 消息的返回数据
+        sharedWorker.port.addEventListener('message', (e) => {
+            console.log(e.data);
+        }, false);
+        sharedWorker.port.start();
+
+        function onKeyPress(e) {
+            const { keyCode, target: { value } } = e
+            if (keyCode === 13) {
+                //  console.log(value)
+                sharedWorker.port.postMessage(value)
+            }
+        }
     </script>
 </body>
 
