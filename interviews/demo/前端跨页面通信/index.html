@@ -10,6 +10,8 @@
 
 <body>
     <input type="text" onkeypress="onKeyPress(event)">
+    <iframe style="display: none;" src="http://www.baidu.com">
+    </iframe>
     <!-- <script>
          BroadCast Channel
          const bc = new BroadcastChannel('张发发')
@@ -93,30 +95,42 @@
             }
         }
     </script> -->
-    <script>
+    <!-- <script>
         // Shared Worker
         const sharedWorker = new SharedWorker('sharedWorker.js', 'msg')
         setInterval(function () {
-            sharedWorker.port.postMessage({ get: true })
+            sharedWorker.port.postMessage({
+                get: true
+            })
         }, 1000)
-        // sharedWorker.onmessage = function (e) {
-        //     console.log(e.data, 'Shared Worker')
-        // }
-
         // 监听 get 消息的返回数据
-        sharedWorker.port.addEventListener('message', (e) => {
-            console.log(e.data);
-        }, false);
-        sharedWorker.port.start();
+        // 方法1
+        sharedWorker.port.onmessage = function (e) {
+            if (typeof e.data !== 'object') {
+                console.log(e.data, 'Shared Worker');
+            }
+        }
+
+        // // 方法2
+        // sharedWorker.port.addEventListener('message', (e) => {
+        //     if(typeof e.data !== 'object'){
+        //         console.log(e.data);
+        //     }
+        // }, false);
+        // sharedWorker.port.start();
 
         function onKeyPress(e) {
-            const { keyCode, target: { value } } = e
+            const {
+                keyCode,
+                target: {
+                    value
+                }
+            } = e
             if (keyCode === 13) {
-                //  console.log(value)
                 sharedWorker.port.postMessage(value)
             }
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

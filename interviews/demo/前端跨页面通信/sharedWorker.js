@@ -1,10 +1,11 @@
 let data = null
-self.addEventListener('connect',function(e){
-    const port = e.ports[0] 
-    port.addEventListener('message',function(event){
-        if(event.data.get){
-            data && port.postMessage(data)  
-        }else{
+self.addEventListener('connect', function (e) {
+    const port = e.ports[0]
+    port.addEventListener('message', function (event) {
+        if (event.data.get && data) {
+            port.postMessage(data)
+            data = null
+        } else {
             data = event.data
         }
     })
