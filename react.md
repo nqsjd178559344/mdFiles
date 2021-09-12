@@ -55,7 +55,7 @@
    1. React Fiber: React内部自实现的一套状态更新机制,支持任务不同优先级,可中断/恢复,并且恢复后可复用之前的中间状态
    2. FiberNode的组成:
       1. 静态数据结构 eg: key | tag[组件类型] | type[FunctionComponent => fun;ClassComponent => class; HostComponent=>DOM节点tagName] | elementType | stateNode[对应真实DOM节点] 等
-      2. 用于连接其他Fiber节点形成Fiber树 eg: return[指向父级Fiber节点] | child[指向子级Fiber节点] | sibling[指向同级的右边第一个Fiber节点]
+      2. 用于连接其他Fiber节点形成Fiber树 eg: return[指向父级Fiber节点] | child[指向子级Fiber节点] | sibling[指向同级的右边第一个Fiber节点]=> FiberTree为何使用链表?:方便中断
       3. 动态工作单元属性 eg: updateQueue等[状态改变信息等] | effectTag[本次更新造成的dom操作] 等
       4. lanes | childLanes [优先级相关]
 6. 双缓存
