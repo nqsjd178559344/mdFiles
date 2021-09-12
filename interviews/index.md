@@ -8,15 +8,15 @@
 
 2. 浏览器缓存包含哪些内容？cookie、localStorage、sessionStorage 是否可以跨域访问？（一般）
     答:
-        1. 
+        1.
            1. http缓存，通过Http请求头判断
            2. WebSQL
            3. indexDB
-           4. Cookie 
+           4. Cookie
                1. 是浏览器访问服务器后，服务器传给浏览器的一段数据。
                2. 浏览器需要保存这段数据，不得轻易删除。
                3. 此后每次浏览器访问该服务器，都必须带上这段数据。
-   
+
            5. LocalStorage
            6. SessionStorage
            7. Application cache
@@ -26,22 +26,23 @@
 
 <!-- * finish -->
 1. innerHTML 和 innerText 的区别？
-   eg: 
+   eg:
+
     ```
     <div id="test">
          <span style="color:red">test1</span> test2
     </div>
     ```
+
     innerHTML: ```<span style="color:red">test1</span> test2```
     innerText: test1
-
 
 ## CSS
 <!-- * finish -->
 1. 标准盒子模型中，盒子所占宽度是怎样构成的？（简单）
     盒子模型设置值:content-box = content-box|border-box|inherit;
 
-    1. content-box: **标准盒子模型** 宽度和高度分别应用到元素的内容框,在宽度和高度之外绘制元素的内边距和边框。即:width = content ; totalWidth = width + 2* border + 2* padding + 2* margin ;
+    1. content-box: **标准盒子模型** 宽度和高度分别应用到元素的内容框,在宽度和高度之外绘制元素的内边距和边框。即:width = content ; totalWidth = width + 2*border + 2* padding + 2* margin ;
     2. border-box: **怪异盒子模型** 为元素设定的宽度和高度决定了元素的边框盒。即为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。即: width = content + border + padding； totalWidth = width + 2* margin
     3. inherit: 继承
 
@@ -58,12 +59,12 @@
       3. #id => 100
       4. .class => 10
       5. 选择器 => 1
-   
+
     Important> 内联 >  id >  class | 属性（[type="text"]） > 类型选择器 | 伪元素选择器 > 通配符 | 子选择器 | 相邻选择权
 
 <!-- * finish -->
 1. css 选择器有哪些？相邻选择器写法？（简单）
-   1.   
+   1.
         1. 简单选择器
         2. 组合器选择器
         3. 伪类选择器
@@ -74,7 +75,8 @@
 <!-- * finish -->
 2. 如何让一个 div 垂直居中，至少说出两种（简单）
     1. flex布局
-    2. 
+    2.
+
     ```
     position:absolute;
     left:0;
@@ -83,7 +85,9 @@
     bottom:0;
     margin:auto
     ```
-    3. 
+
+    3.
+
     ```
     left: 50%;
     position: absolute;
@@ -93,6 +97,7 @@
 
 <!-- * finish -->
 3. 纯css 实现一个向下的小三角（简单）
+
     ```
     width: 0px;
     height: 0px;
@@ -111,7 +116,7 @@
     **特点**
     1. 同一个BFC的相邻Box的margin会重叠
     2. 不给父级高度，自己浮动，则父级会发生高度塌陷 => 父级清除浮动
-   
+
     **创建方式**
     1. float: !none
     2. display: inline-block | flex | table-cell | table-caption
@@ -142,7 +147,7 @@
       7. order
       8. 多行排列??? => ***align-content<多轴线>***
          ***...align-items , ...justify-content***
-      9.  flex-self => ***align-self***
+      9. flex-self => ***align-self***
          ***...align-items,auto***
       10. flex-grow<放大>:***init = 0***
       11. flex-shrink<缩小>:***init = 1***
@@ -153,6 +158,7 @@
       3. flex:none => flex grow = 0;flex shrink = 0;flex-basis = auto
    3. flex-shrink 计算方式
     eg:
+
     ```
     wrapper = 500
     item1~item5 = 120
@@ -160,15 +166,16 @@
     求:
     item1~5各剩余多少?
     ```
+
     答:
     120*5 = 600,600 - 500 = 100
     故item1~5共收缩100
     因1+2+...+5 = 15
-    故item-n: 120 - 100 / 15 * n = 120- 6.667n
-    item-1: 120-6.667 * 1 = 113.333 => 向上取整两位 113.34
-    item-2: 120-6.667 * 2 = 106.666 => 向上取整两位 106.66
-    item-3: 120-6.667 * 3 = 99.999 => 向上取整两位 100
-    item-4: 120-6.667 * 4 = 93.332 => 向上取整两位 93.34
+故item-n: 120 - 100 / 15* n = 120- 6.667n
+    item-1: 120-6.667 *1 = 113.333 => 向上取整两位 113.34
+item-2: 120-6.667* 2 = 106.666 => 向上取整两位 106.66
+    item-3: 120-6.667 *3 = 99.999 => 向上取整两位 100
+item-4: 120-6.667* 4 = 93.332 => 向上取整两位 93.34
     item-5: 120-6.667 * 5 = 86.665 => 向上取整两位 86.66
 
 <!-- * finish -->
@@ -186,11 +193,11 @@
       10. font-kerning
       11. font-optical-sizing
       <!-- 兼容性 -->
-      1.  font-size-adjust
-      2.  font-synthesis
-      3.  font-variant-alternates
-      4.  font-language-override
-      5.  font-size-adjust
+      1. font-size-adjust
+      2. font-synthesis
+      3. font-variant-alternates
+      4. font-language-override
+      5. font-size-adjust
    2. text<所有属性[可能有兼容性问题]>:
       1. text-align
       2. text-decoration
@@ -202,41 +209,43 @@
    3. visibility / opacity
    4. color
    5. 表格:
-   6. 列表: 
+   6. 列表:
         list-style :  
          1. list-style-position
          2. list-style-image
          3. list-style-type
    7. 光标: cursor
+
 ### JS
 <!-- * finish -->
 1. 基础数据类型有哪些？引用数据类型有哪些？基础数据类型和引用类型的区别？（简单）
     1. 基本数据类型: **boolean** | string | number | null | undefined | Symbol | **BigInt**
     2. 引用数据类型: array | object | **function** | **RegExp | Date**
-    3. 区别: 
-       1. 基本数据类型: 
+    3. 区别:
+       1. 基本数据类型:
            1. 保存于栈中
            2. 值不可变
            3. 不可添加属性和方法
            4. 赋值的是: 简单赋值
            5. 比较的是: 值比较
-       2. 引用数据类型: 
+       2. 引用数据类型:
            1. 指针保存于栈中，指向存储对象的内存地址; 实体保存于堆中
            2. 值可变
            3. 可以添加属性和方法
            4. 赋值的是: 对象引用
            5. 比较的是: 引用地址
-   
+
 <!-- * finish -->
 3. 正则考察：电话号/4位验证码（一般）
-   1. 电话号: 
+   1. 电话号:
         /^1[3589]\d{9}/g
-   1. 4位验证码: 
+   1. 4位验证码:
         /^[a-zA-Z0-9]{4}$/g
-   
+
 <!-- * finish -->
 4. 至少三种数组去重（简单数组/对象数组）的方式，越多越好（一般）
    1. 简单数组去重:
+
       ```
         let array = [1, 2, 13, 4, 3, 2, 4, 4, 3, 5, 3, 4, 5, 4, 6, 1, 6, 4, 4, 1, 2, 1, 3]
         // 理论值: [1,2,13,4,3,4,5,6]
@@ -270,7 +279,9 @@
         const res2 = uniq2(array)
         const res3 = uniq3(array)
       ```
+
    2. 对象数组去重:
+
       ```
       // 2. 对象数组去重
         var arr = [
@@ -334,11 +345,11 @@
    1. 使用Promise
    2. async、await
 6. 什么是事件循环（event loop）（一般）
-   
+
 7. 防抖和节流的实现方式，一般使用场景（一般）
    1. 防抖: 一般用于input框输入，即输入完成后才去做事（景区大巴车）
         实现
-        
+
    2. 节流: 一般用于阶段性传递信息（普通公交车）
         实现
 
@@ -357,6 +368,7 @@
             2. 一旦输出一个值，模块内部的变化就影响不到这个值。
          module.exports / require
       2. AMD: **异步加载**[requirejs]
+
          ```
          定义:
          define(function(){ return 模块 })
@@ -364,18 +376,22 @@
          引入:
          require(['依赖模块1','依赖模块2'],function(m1,m2){ 使用 })
          ```
+
       3. CMD: **用于浏览器端，模块异步加载，使用时加载执行**[seajs]
+
           ```
           定义:
           define(function(require,exports,module){ return 模块 })
           引入:
           define(function(require){ var m1 = require('./index) ; })
           ```
+
       4. ES6:export (default) / import **编译时加载/静态加载 | 输出值的引用 | 异步加载 |自动严格模式 | !some**
-         1. some: this | arguments | require | module | exports | __filename | __dirname
+         1. some: this | arguments | require | module | exports | __filename |__dirname
          2. 如多次重复执行同一句import语句，那么只会执行一次，而不会执行多次。
          3. 重复导入某模块的不同模块时，会一次性加载
          4. 快捷写法
+
             ```
             export {add as default};
             // 等同于
@@ -386,11 +402,14 @@
             // 等同于
             // import foo from 'modules';
             ```
+
       ```
       commonJS的，引入的值，可以在外面更改，但是暴露的原始值不可以更改,也就是值的复制,复制出来是可以改的
       export的，不可以在外面给他重新赋值，但是如果它本身改变，外面的值也会改变，也就是值的引用
       ```  
+
       eg:
+
       ```
       // CommonJS模块
       let { stat, exists, readfile } = require('fs');
@@ -404,9 +423,10 @@
       // ES6模块
       import { stat, exists, readFile } from 'fs'; // 局部加载
       ```
-      
+
 <!-- * finish -->
 10. script 加载
+
    ```
       1. <script src="path/to/myModule.js" defer></script> 
       // defer: 渲染完再执行,按顺序执行
@@ -416,9 +436,10 @@
    ```
 
 <!-- * finish -->
-11.   webSocket
+11. webSocket
      1. 解决问题：
         1. 服务端主动推消息到客户端 / 客户端主动推消息到服务端
+
      2. 特点:
         1. 数据格式轻量，性能开销小，通信高效
         2. 无同源限制
@@ -430,14 +451,13 @@
         5. 接收数据后的回调: ws.onmessage
         6. 报错时的回调: ws.onerror
 
-
 12. JS的事件机制[顺序执行] =>  e.stopPropagation();//阻止冒泡|捕获
-    1.  事件捕获: 
-    2.  目标
-    3.  事件冒泡: 子元素的事件被触发,父元素的相同事件也会被触发 
+    1. 事件捕获:
+    2. 目标
+    3. 事件冒泡: 子元素的事件被触发,父元素的相同事件也会被触发
 
-    4.  通用: 冒泡 | 事件委托 e.preventDefault() => 阻止默认操作
-    5.  事件委托: 事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素。当点击子元素，根据"事件冒泡"，该子元素的父级元素捕获了该次点击事件，并触发自己的方法。
+    4. 通用: 冒泡 | 事件委托 e.preventDefault() => 阻止默认操作
+    5. 事件委托: 事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素。当点击子元素，根据"事件冒泡"，该子元素的父级元素捕获了该次点击事件，并触发自己的方法。
 
 ## React
 <!-- * finish -->
@@ -457,13 +477,13 @@
       3. render()
       4. getSnapshotBeforeUpdate()
       5. * componentDidUpdate()
-   3.  卸载
+   3. 卸载
        1. * componentWillUnmount
-   4.  错误处理
-       1.  static getDerivedStateFromError()
+   4. 错误处理
+       1. static getDerivedStateFromError()
        2. * componentDidCatch()
    5. ![图](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7083cad1a8a846aba4d9aed65f64e024~tplv-k3u1fbpfcp-watermark.awebp)
-   
+
 <!-- * finish -->
 2. React的Key有什么作用？（简单）
    diff算法时标明当前数据有无变更
@@ -471,43 +491,45 @@
 <!-- * finish -->
 3. React的Fragment 与 <> </> 有什么区别？（简单）
    Fragment可指定Key,后者不可
-   
+
 <!-- * finish -->
 4. this.setState有几个参数？第二个参数是干什么用的？（简单）
    1. 两个: setState(updater, [callback])
-      1. updater: 
+      1. updater:
          1. { quantity:2 }
          2. (state,props)=>{ return { quantity:state.quantity + 1 } }
       2. callback:
          1. 在 setState 完成合并并重新渲染组件后执行。通常，我们建议使用 componentDidUpdate() 来代替此方式。*
-   
+
 5. this.setState什么时候是异步,什么时候是同步? 异步 => 多个state批量更新
    在由React引发的生命周期函数/事件处理[onClick等]时异步,否则同步[可自己addEventListener添加监听]
-   
+
 6. 数组渲染是否能使用index？为什么？（简单）
     如果显示的仅为item，则可使用index;其他情况最好不要
-   
+
 <!-- * finish -->
 7. Component，PureComponent，FunctionComponent分别是什么？有些什么样的特点？作用？（一般）
    **原答案**
    1. Component: 有自己独立的状态，业务逻辑，比价重。
    2. PureComponent: 简略的实现了一套浅层对比的shouldComponentUpdate。对象引用不改变，属性改变就不起作用了。
    3. FunctionComponent: 没有state，纯渲染，速度快。
-   
+
   为什么函数组件的性能比类组件的性能要高？因为类组件使用的时候要实例化
 
   **网络上的回答**
+
   1. 生成元素的差异:经过 React.createElement 处理之后，三个组件的区别就是 type 不一样了
-     1.  Component: type: class Comp
-     2.  PureComponent: type: class PureComp
-     3.  FunctionComponent: type f FunctionComp()
+     1. Component: type: class Comp
+     2. PureComponent: type: class PureComp
+     3. FunctionComponent: type f FunctionComp()
 
   **本人答案**
+
    1. Component: 使用 ES6 classes 方式定义 React 组件 ; 不管props和state是否变化,组件都会更新
    2. PureComponent: Component加强版，对 props 和 state 进行浅层比较[不会比较对象深层次的值是否相等]，并减少了跳过必要更新的可能性。(自动进行 shouldComponentUpdate)
    3. FunctionComponent: 函数式组件;
-   
-8. React Hook参数
+
+   8. React Hook参数
    1. 基本
       1. useState
       2. useEffect
@@ -520,33 +542,33 @@
       5. useLayoutEffect
       6. **useDebugValue**
       7. **useImperativeHandle**
-   
-9. React事件
-   1.  合成事件
-       1.  意义: 避免DOM上绑定过多的事件处理函数[占用内存 && 影响页面响应] && 屏蔽浏览器不同造成事件不同, 而生成的中间件
-       2.  原理: 
-           1.  在document中监听所支持的事件,当事件调用并冒泡到document时,React调用真正的处理函数执行
-           2.  **合成事件的捕获阶段同样晚于原生事件的捕获阶段**
 
-       3.  图例: ![图例](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/9/8792eeae6dc6011274986acf42a76b15~tplv-t2oaga2asx-watermark.awebp)
-   2.  原生事件
-       1.  思路: componentDidMount阶段/ref的函数执行阶段进行绑定至真实DOM操作，在componentWillUnmount阶段进行解绑操作以避免内存泄漏。
-       2.  在Class组件中[ReactDOM.findDOMNode(component)仅支持Class组件], 进行绑定操作
+   9. React事件
+   1. 合成事件
+       1. 意义: 避免DOM上绑定过多的事件处理函数[占用内存 && 影响页面响应] && 屏蔽浏览器不同造成事件不同, 而生成的中间件
+       2. 原理:
+           1. 在document中监听所支持的事件,当事件调用并冒泡到document时,React调用真正的处理函数执行
+           2. **合成事件的捕获阶段同样晚于原生事件的捕获阶段**
+
+       3. 图例: ![图例](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/9/8792eeae6dc6011274986acf42a76b15~tplv-t2oaga2asx-watermark.awebp)
+   2. 原生事件
+       1. 思路: componentDidMount阶段/ref的函数执行阶段进行绑定至真实DOM操作，在componentWillUnmount阶段进行解绑操作以避免内存泄漏。
+       2. 在Class组件中[ReactDOM.findDOMNode(component)仅支持Class组件], 进行绑定操作
+
           ```
            componentDidMount() {
               const $this = ReactDOM.findDOMNode(this)
               $this.addEventListener('click', this.onDOMClick, false)
           }
           ```
+
    3. 响应顺序
       1. 捕获: 先监听的原生事件执行,捕获到current元素后,合成事件执行=> .addEventListener("click", this.onDOMClick, true);
       2. 冒泡: 先监听的原生事件执行,冒泡到document后,合成事件执行 => .addEventListener("click", this.onDOMClick, false);
       3. 如合成事件|原生事件执行时e.stopPropagation(),则后续事件不会触发
-   
-
-
 
 ## Vue
+
 1. Vue的生命周期？
 3. vue-router
 4. VUEX
@@ -558,6 +580,7 @@
 5. 关于技术栈vue和react，你倾向于用那种，为什么？可以简单聊一聊你对这两种框架各有的优势。
 
 ## Store
+
 1. mobx-react
    1. 参数
       1. @observable
@@ -565,10 +588,12 @@
       3. @action
 
 ## TS
+
 1. interface / type 区别
    1. 相同点
       1. 均可以描述对象或函数
       2. 均允许扩展(extends)
+
       ```
       1. type 扩展 type
       type Name = { 
@@ -599,11 +624,14 @@
          age: number; 
       }
       ```
+
    2. type可以 但interface 不可
       1. 声明基本类型
       2. 声明联合类型
       3. 声明 typeof A
    3. interface可以 但type 不可
       1. 声明合并
+
 ## taro
+
 3. 1/2 与 3版本的区别?

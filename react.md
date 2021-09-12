@@ -32,7 +32,7 @@
             1. 为什么不用 *requestIdleCallback*?
                1. 浏览器兼容性
                2. 触发频率不稳定, 受很多因素影响
-            2. Scheduler 优点? 
+            2. Scheduler 优点?
                1. 除了在空闲时触发回调的功能外，Scheduler还提供了多种调度优先级供任务设置。
       2. 协调器(*Reconciler*)
          1. 更改=> 从递归变为可中断的循环过程, 每次循环都会调用 *shouldYield* 判断当前是否有剩余时间
@@ -85,16 +85,13 @@
             reconcileChildren: 为生成的Fiber节点带上effectTag属性 => effectTag: 要执行的DOM操作
             ![beginWork流程](https://react.iamkasong.com/img/beginWork.png)
 
-            
       2. 归: completeWork => 处理Props: *如onClick等回调函数的注册/style/children等* => 赋值给 workInProgress.updateQueue 数组
          1. mount:
             1. 生成Fiber节点对应的DOM节点
             2. 将子DOM节点插入新生成的DOM节点中
-            3. 处理Props 
+            3. 处理Props
          2. update
             1. 处理Props
             ![completeWork流程](https://react.iamkasong.com/img/completeWork.png)
 
-
-   https://react.iamkasong.com/
-   
+   <https://react.iamkasong.com/>
