@@ -18,8 +18,8 @@
       7. trim: 消除 string 首尾空格
       8. trimStart/trimLeft [ES10/ES2019]
       9. trimEnd/trimRight  [ES10/ES2019]
-      10. matchAll [ES11/ES2120]
-      11. replaceAll [ES12/ES2121]/replace区别
+      10. matchAll [ES11/ES2020]
+      11. replaceAll [ES12/ES2021]/replace区别
           1. replaceAll(subStr, newSubStr):一键替换所有
           2. replace(regexp|subStr, newSubStr|function): 默认只替换第一个
 4. RegExp
@@ -32,10 +32,10 @@
       1. trunc => 整数部分 || NaN
       2. sign => +1 || -1 || +0 || -0 || NaN
       3. cbrt(X) => X的立方根
-6. BigInt [ES11/ES2120]
-7. 动态imports [ES11/ES2120]
+6. BigInt [ES11/ES2020]
+7. 动态imports [ES11/ES2020]
    1. export * as {myModule} from "./test-module.js";
-8. globalThis [ES11/ES2120]
+8. globalThis [ES11/ES2020]
    1. 浏览器 => window
    2. nodejs => global
 9. Function
