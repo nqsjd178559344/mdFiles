@@ -529,7 +529,7 @@ item-4: 120-6.667* 4 = 93.332 => 向上取整两位 93.34
    2. PureComponent: Component加强版，对 props 和 state 进行浅层比较[不会比较对象深层次的值是否相等]，并减少了跳过必要更新的可能性。(自动进行 shouldComponentUpdate)
    3. FunctionComponent: 函数式组件;
 
-   8. React Hook参数
+8. React Hook参数
    1. 基本
       1. useState
       2. useEffect
@@ -543,7 +543,7 @@ item-4: 120-6.667* 4 = 93.332 => 向上取整两位 93.34
       6. **useDebugValue**
       7. **useImperativeHandle**
 
-   9. React事件
+9. React事件
    1. 合成事件
        1. 意义: 避免DOM上绑定过多的事件处理函数[占用内存 && 影响页面响应] && 屏蔽浏览器不同造成事件不同, 而生成的中间件
        2. 原理:
@@ -566,6 +566,43 @@ item-4: 120-6.667* 4 = 93.332 => 向上取整两位 93.34
       1. 捕获: 先监听的原生事件执行,捕获到current元素后,合成事件执行=> .addEventListener("click", this.onDOMClick, true);
       2. 冒泡: 先监听的原生事件执行,冒泡到document后,合成事件执行 => .addEventListener("click", this.onDOMClick, false);
       3. 如合成事件|原生事件执行时e.stopPropagation(),则后续事件不会触发
+
+   4. 
+      ```jsx
+         function Example() {
+            return (
+               <div
+                  tabIndex={1}
+                  onFocus={(e) => {
+                  console.log(e.currentTarget, e.relatedTarget, e.target);
+                  if (e.currentTarget === e.target) {
+                     console.log("开始聚焦啦");
+                  } else {
+                     console.log("聚焦子集啦", e.target);
+                  }
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                     // Not triggered when swapping focus between children
+                     console.log("焦点已进入");
+                  }
+                  }}
+                  onBlur={(e) => {
+                  if (e.currentTarget === e.target) {
+                     console.log("开始失焦啦");
+                  } else {
+                     console.log("失焦子集啦", e.target);
+                  }
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                     // Not triggered when swapping focus between children
+                     console.log("焦点已移出");
+                  }
+                  }}
+               >
+                  <input id="1" />
+                  <input id="2" />
+               </div>
+            );
+         }
+      ```
 
 ## Vue
 
