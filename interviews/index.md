@@ -607,6 +607,9 @@ item-4: 120-6.667* 4 = 93.332 => 向上取整两位 93.34
 ## Vue
 
 1. Vue的生命周期？
+2. Vue父子组件传值/传事件
+   1. 子组件设置ref,父组件通过 this.$ref.refName.事件 调用子组件事件
+   2. $on(eventName)/$emit(eventName,payload)
 3. vue-router
 4. VUEX
    1. State
