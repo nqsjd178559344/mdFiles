@@ -93,5 +93,5 @@
          2. update
             1. 处理Props
             ![completeWork流程](https://react.iamkasong.com/img/completeWork.png)
-
-   <https://react.iamkasong.com/>
+            
+   ![总体流程](https://7kms.github.io/react-illustration-series/static/core-packages.08e2adc3.png)
