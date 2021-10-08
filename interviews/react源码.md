@@ -37,3 +37,5 @@ dangerfile: 代码检测,不通过则不可提交
       function pickArbitraryLane(当前优先级类型 & ~wipLanes) => 先对 wipLanes 取非然后按位与[均 1 才 1]
       pickArbitraryLane: (lanes)=>lanes & -lanes[lanes.补码]
       ```
+5. react面经|资源等
+   1. https://www.edureka.co/blog/interview-questions/react-interview-questions/ // 50大react面试题
