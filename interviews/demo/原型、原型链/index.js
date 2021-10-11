@@ -15,7 +15,7 @@ const Person = function () {
     this.b = 'b'
 }
 Person.prototype = new People()
-// Person.prototype.constructor = Person // !更改
+Person.prototype.constructor = Person // !更改
 Person.prototype.isB = 'isB'
 
 const Father = function () {
@@ -23,14 +23,14 @@ const Father = function () {
 }
 Father.prototype = new Person() // todo 直接指定 Father.prototype会丢失Father.prototype.constructor,需要重新指定constructor
 // ! 但也只是构造函数不正确，属性/方法依旧继承了
-// Father.prototype.constructor = Father // !更改
+Father.prototype.constructor = Father // !更改
 Father.prototype.isC = 'isC'
 
 const Me = function () {
     this.d = 'd'
 }
 Me.prototype = new Father()
-// Me.prototype.constructor = Me // !更改
+Me.prototype.constructor = Me // !更改
 Me.prototype.isD = 'isD'
 
 const me = new Me()
@@ -54,4 +54,12 @@ console.log(me.__proto__.__proto__.__proto__.constructor)
 console.log(me.__proto__.__proto__.__proto__.__proto__.constructor)
 // console.log(me.__proto__.__proto__.__proto__.__proto__.__proto__, 'Object.prototype')
 // console.log(me.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__, 'null')
+
+console.log(me,'____me____')
+
+console.log(me instanceof Me)
+console.log(me instanceof Father)
+console.log(me instanceof Person)
+console.log(me instanceof People)
+
 
