@@ -8,7 +8,8 @@
     <title>防抖</title>
     <style>
         #container,
-        #container2 {
+        #container2,
+        #container3 {
             height: 100px;
         }
 
@@ -19,12 +20,17 @@
         #container2 {
             background-color: pink;
         }
+
+        #container3 {
+            background-color: sandybrown;
+        }
     </style>
 </head>
 
 <body>
     <div id="container"></div>
     <div id="container2"></div>
+    <div id="container3"></div>
     <script>
         var count = 1;
         var container = document.getElementById('container');
@@ -40,7 +46,14 @@
             container2.innerHTML = count2++;
         };
 
-        // 1. 时间戳
+        var count3 = 1;
+        var container3 = document.getElementById('container3');
+
+        function getUserAction3() {
+            container3.innerHTML = count3++;
+        };
+
+        // 1. 时间戳: 移入立即执行, 移出不可再执行一次
         function throttle(fn, wait) {
             // 思路: 不管何时,这次触发必与上次触发间隔一定时间
             let prevTime = 0
@@ -53,7 +66,7 @@
             }
         }
 
-        // 2. 定时器
+        // 2. 定时器: 移入不可立即执行, 移出可再执行一次
         function throttle2(fn, wait) {
             // 思路: 不管何时,这次触发必与上次触发间隔一定时间
             let timeOut = null
@@ -67,9 +80,35 @@
             }
         }
 
+        // 3. 综合: 移入立即执行,移除再执行一次
+        function throttle3(fn, wait) {
+            let prevTime = 0
+            let timeOut = null
+
+            return function () {
+                let now = Date.now()
+                if (now - prevTime >= wait) { // 移入立即执行
+                    if (timeOut) {
+                        clearTimeout(timeOut)
+                        timeOut = null
+                    }
+                    fn()
+                    prevTime = now
+                } else if (!timeOut) {
+                    timeOut = setTimeout(function () {
+                        fn()
+                        timeOut = null
+                        prevTime = Date.now()
+                    }, wait)
+                }
+            }
+        }
+
         // container.onmousemove = getUserAction;
+
         container.onmousemove = throttle(getUserAction, 2000);
         container2.onmousemove = throttle2(getUserAction2, 2000);
+        container3.onmousemove = throttle3(getUserAction3, 2000);
     </script>
 </body>
 
