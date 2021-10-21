@@ -7,15 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>防抖</title>
     <style>
+        #container,
+        #container2 {
+            height: 100px;
+        }
+
         #container {
-            height: 500px;
             background-color: yellow;
+        }
+
+        #container2 {
+            background-color: pink;
         }
     </style>
 </head>
 
 <body>
     <div id="container"></div>
+    <div id="container2"></div>
     <script>
         var count = 1;
         var container = document.getElementById('container');
@@ -24,6 +33,14 @@
             container.innerHTML = count++;
         };
 
+        var count2 = 1;
+        var container2 = document.getElementById('container2');
+
+        function getUserAction2() {
+            container2.innerHTML = count2++;
+        };
+
+        // 1. 时间戳
         function throttle(fn, wait) {
             // 思路: 不管何时,这次触发必与上次触发间隔一定时间
             let prevTime = 0
@@ -36,8 +53,23 @@
             }
         }
 
+        // 2. 定时器
+        function throttle2(fn, wait) {
+            // 思路: 不管何时,这次触发必与上次触发间隔一定时间
+            let timeOut = null
+            return function () {
+                if (!timeOut) {
+                    timeOut = setTimeout(function () {
+                        fn()
+                        timeOut = null
+                    }, wait)
+                }
+            }
+        }
+
         // container.onmousemove = getUserAction;
-        container.onmousemove = throttle(getUserAction, 1000);
+        container.onmousemove = throttle(getUserAction, 2000);
+        container2.onmousemove = throttle2(getUserAction2, 2000);
     </script>
 </body>
 
