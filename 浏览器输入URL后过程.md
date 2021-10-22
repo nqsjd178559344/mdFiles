@@ -35,4 +35,13 @@
    3.  服务器数据传输完毕后，向客户机发送连接释放报文；
    4.  客户机接收到报文后，发出确认，然后等待一段时间后，释放TCP连接；
 
+### 有关文档
+
+![图片](https://i.bmp.ovh/imgs/2021/10/b18147c5f23abea3.png)
+![图片](https://i.bmp.ovh/imgs/2021/10/ed1943e928604a13.png)
+
+https://time.geekbang.org/column/article/113550 //  TCP协议：如何保证页面文件能被完整送达浏览器？
+
 https://www.cnblogs.com/pengmn/p/10836784.html // 为什么需要三次握手四次挥手
+
+图床[本土图片转为在线链接]: https://imgurl.org/
