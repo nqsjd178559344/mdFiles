@@ -27,6 +27,19 @@ interface B{
 - extends
 - 泛型
 
+- Utility Types
+
+1. Partial<Type>
+2. Required<Type>
+3. Readonly<Type>
+4. Record<Keys, Type>
+5. Pick<Type, Keys>
+6. Omit<Type, Keys>
+7. Exclude<Type, ExcludedUnion>
+8. Extract<Type, Union>
+9. NonNullable<Type>
+10. Parameters<Type>
+
 ### 注意
 
 1. 可推断类型不必标明
