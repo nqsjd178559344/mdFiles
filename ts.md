@@ -39,7 +39,15 @@ interface B{
 8. Extract<Type, Union>
 9. NonNullable<Type>
 10. Parameters<Type>
+11. ConstructorParameters<Type>
+12. ReturnType<Type>
+13. InstanceType<Type>
+14. ThisParameterType<Type>
 
 ### 注意
 
 1. 可推断类型不必标明
+2. typeof???
+3. keyof
+4. in interface 不可用 in???
+5. infer???
