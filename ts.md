@@ -27,27 +27,29 @@ interface B{
 - extends
 - 泛型
 
-- Utility Types
+- 工具类
 
-1. Partial<Type>
-2. Required<Type>
-3. Readonly<Type>
-4. Record<Keys, Type>
-5. Pick<Type, Keys>
-6. Omit<Type, Keys>
-7. Exclude<Type, ExcludedUnion>
-8. Extract<Type, Union>
-9. NonNullable<Type>
-10. Parameters<Type>
-11. ConstructorParameters<Type>
-12. ReturnType<Type>
-13. InstanceType<Type>
-14. ThisParameterType<Type>
+1. typeof
+2. keyof
+3. in
+4. infer???
+5. extends
+6. Partial<Type>
+7. Required<Type>
+8. Readonly<Type>
+9. Record<Keys, Type>
+10. Pick<Type, Keys>
+11. Omit<Type, Keys>
+12. Exclude<Type, ExcludedUnion>
+13. Extract<Type, Union>
+14. NonNullable<Type>
+15. Parameters<Type>
+16. ConstructorParameters<Type>
+17. ReturnType<Type>
+18. InstanceType<Type>
+19. ThisParameterType<Type>
 
 ### 注意
 
 1. 可推断类型不必标明
-2. typeof???
-3. keyof
-4. in interface 不可用 in???
-5. infer???
+2. in interface 不可用 in???
