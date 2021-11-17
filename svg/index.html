@@ -16,12 +16,50 @@
     </style>
   </head>
   <body>
-    <svg width="500" height="500">
-      <!-- <line x1="1" y1="1" x2="11" y2="11"></line> -->
-      <!-- <polyline points="14 1 25 2 5 59 9 9 70 70 0 100"></polyline> -->
-      <!-- <rect x="1" y="1" width="100" height="100"></rect> -->
-      <!-- <ellipse cx="166" cy="266" rx="13" ry="14"></ellipse> -->
-      <!-- <polygon points="14 1 25 2 5 59 9 9 70 70 0 100"></polygon> -->
+    <svg width="5000" height="5000">
+      <defs>
+        <line x1="1" y1="1" x2="11" y2="11"></line>
+      </defs>
+      <defs>
+        <polyline points="14 1 25 2 5 59 9 9 70 70 0 100"></polyline>
+      </defs>
+      <defs>
+        <rect x="1" y="1" width="100" height="100"></rect>
+      </defs>
+      <defs>
+        <ellipse cx="166" cy="266" rx="13" ry="14"></ellipse>
+      </defs>
+
+      <defs>
+        <polygon points="14 1 25 2 5 59 9 9 70 70 0 100"></polygon>
+      </defs>
+
+      <defs>
+        <path d=" M 23 34 L 34 23 L 34 50 L 50 70 L 90 300 Z"></path>
+      </defs>
+
+      <!-- <g id="demo1">
+        <line x1="1" y1="1" x2="11" y2="11"></line>
+        <line x1="234" y1="123" x2="11" y2="11"></line>
+        <line x1="111" y1="111" x2="123" y2="123"></line>
+        <line x1="123" y1="123" x2="123" y2="123"></line>
+      </g> -->
+
+      <g id="demo2">
+        <line x1="454" y1="435" x2="53" y2="34"></line>
+        <line x1="67" y1="66" x2="5" y2="43"></line>
+        <line x1="111" y1="111" x2="123" y2="123"></line>
+        <line x1="58" y1="79" x2="57" y2="123"></line>
+      </g>
+
+      <!-- <g id="demo3">
+        <line x1="314" y1="44" x2="11" y2="11"></line>
+        <line x1="76" y1="452" x2="11" y2="66"></line>
+        <line x1="98" y1="111" x2="89" y2="123"></line>
+        <line x1="42" y1="454" x2="78" y2="97"></line>
+      </g> -->
+
+      <use href="#demo2" x="1000" y="200"></use>
     </svg>
   </body>
 </html>
