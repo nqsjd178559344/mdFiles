@@ -25,6 +25,8 @@ interface B{
 ![例](https://github-blog-resource.oss-cn-beijing.aliyuncs.com/keyof.png)
 
 - extends
+- 类型拓宽
+- 类型缩小
 - 泛型
 
 - 工具类
