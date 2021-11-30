@@ -20,6 +20,8 @@ interface B{
 }
 判断类型; A : keyof B
 此时A => a|b|c
+
+可用 a:B['a'] 来指定类型
 ```
 
 ![例](https://github-blog-resource.oss-cn-beijing.aliyuncs.com/keyof.png)
