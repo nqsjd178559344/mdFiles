@@ -104,8 +104,10 @@
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 20px solid red;
-    ```
+   <!-- 进阶: 纯 css 实现一个向下的扇形 -->
+   border-radius: 20px;
 
+   ```
 <!-- * finish -->
 4. 设置元素浮动后，该元素的 display 值是多少？（有迷惑性，简单）
     Block
