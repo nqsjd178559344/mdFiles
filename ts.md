@@ -22,6 +22,7 @@ interface B{
 此时A => a|b|c
 
 可用 a:B['a'] 来指定类型
+
 ```
 
 ![例](https://github-blog-resource.oss-cn-beijing.aliyuncs.com/keyof.png)
@@ -57,3 +58,17 @@ interface B{
 
 1. 可推断类型不必标明
 2. in interface 不可用 in???
+3. 可以通过下标来将数组或者对象转成联合类型
+
+   ```
+       // 数组
+       T[number]
+       // 对象
+       Object[keyof T]
+   ```
+
+4. 元组和数组的区别
+   元组的长度是有限的，数组是无限的，也就是他们的 ['length'] 返回的结果是不同的
+
+   元组返回的是数字
+   数组返回的是 number
