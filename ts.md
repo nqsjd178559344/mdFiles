@@ -67,8 +67,30 @@ interface B{
        Object[keyof T]
    ```
 
-4. 元组和数组的区别
+4. 获取 数组/元组 的 length array["length"]
+5. 可赋值初始值
+
+   ```ts
+   interface Todo1 {
+     title: string;
+     description?: string;
+     completed: boolean;
+   }
+
+   type MyReadonly2<T, K extends keyof T = keyof T> = Omit<T, K> & {
+     readonly [key in K]: T[key];
+   };
+
+   type A = MyReadonly2<Todo1>;
+   type B = MyReadonly2<Todo1, "title" | "description">;
+   ```
+
+6. 元组和数组的区别
    元组的长度是有限的，数组是无限的，也就是他们的 ['length'] 返回的结果是不同的
 
-   元组返回的是数字
-   数组返回的是 number
+元组返回的是数字
+数组返回的是 number
+
+```
+
+```
