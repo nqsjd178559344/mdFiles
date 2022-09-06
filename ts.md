@@ -87,10 +87,14 @@ interface B{
 
 6. 元组和数组的区别
    元组的长度是有限的，数组是无限的，也就是他们的 ['length'] 返回的结果是不同的
+   元组返回的是数字
+   数组返回的是 number
 
-元组返回的是数字
-数组返回的是 number
+7. 合并 类型
 
-```
-
+```ts
+/**
+ * A = { a: number;} & { b: number;} & {  c: boolean;}
+ * 合并: Omit<A,never> => {a: number;b: number;c: boolean;}
+ */
 ```
