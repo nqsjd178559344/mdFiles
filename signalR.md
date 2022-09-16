@@ -1,5 +1,7 @@
 1. 文档 https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/signalr-typescript-webpack?source=recommendations&view=aspnetcore-6.0&tabs=visual-studio-code
 
+eg:
+
 ```tsx
 // 文件1
 import * as SignalR from "@microsoft/signalr";
@@ -75,7 +77,7 @@ useEffect(() => {
   hubConnection.on("MessageNotified", messageNotifiedCallback);
 
   hubConnection.onclose(async () => {
-    // 重启
+    // 定时重启
     // Delay for 1 ~ 5 seconds which is from the robot side practice.
     await new Promise((r) => setTimeout(r, random(1, 5, false) * 1000));
     await hubConnection.start();
