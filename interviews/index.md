@@ -164,10 +164,13 @@
        10. flex-grow<放大>:**_init = 0_**
        11. flex-shrink<缩小>:**_init = 1_**
        12. flex-**_basis_**<默认>: **_init = auto_**
-    2. flex:1/flex:auto/flex:none 区别
-       1. flex:1 => flex-grow = 1;flex-shrink = 1;flex-basis = 0%
-       2. flex:auto => flex grow = 1;flex shrink = 1;flex-basis = auto
-       3. flex:none => flex grow = 0;flex shrink = 0;flex-basis = auto
+    2. flex:inital/flex:1/flex:auto/flex:none 区别
+
+       1. flex:inital => 0 1 auto
+       2. flex:1 => 0 1 0% =>**_1 1 0%_**
+       3. flex:auto => 1 1 auto
+       4. flex:none => 0 0 auto
+
     3. flex-shrink 计算方式
        eg:
 
