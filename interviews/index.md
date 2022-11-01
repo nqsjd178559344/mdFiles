@@ -23,10 +23,8 @@
 1. innerHTML 和 innerText 的区别？
    eg:
 
-   ```
-   <div id="test">
-        <span style="color:red">test1</span> test2
-   </div>
+   ```html
+   <div id="test"><span style="color:red">test1</span> test2</div>
    ```
 
    innerHTML: `<span style="color:red">test1</span> test2`
@@ -78,18 +76,18 @@
    1. flex 布局
    2.
 
-   ```
-   position:absolute;
-   left:0;
-   right:0;
-   top:0;
-   bottom:0;
-   margin:auto
+   ```css
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   margin: auto;
    ```
 
    3.
 
-   ```
+   ```css
    left: 50%;
    position: absolute;
    top: 50%;
@@ -100,16 +98,15 @@
 
 3. 纯 css 实现一个向下的小三角（简单）
 
-   ```
-   width: 0px;
-   height: 0px;
-   border-left: 20px solid transparent;
-   border-right: 20px solid transparent;
-   border-top: 20px solid red;
+   ```css
+      width: 0px;
+      height: 0px;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid red;
 
-   <!-- 进阶: 纯 css 实现一个向下的扇形 -->
-   border-radius: 20px;
-
+      <!-- 进阶: 纯 css 实现一个向下的扇形 -->
+      border-radius: 20px;
    ```
 
 <!-- * finish -->
@@ -174,7 +171,7 @@
     3. flex-shrink 计算方式
        eg:
 
-       ```
+       ```css
        wrapper = 500
        item1~item5 = 120
        item-n: flex-shrink:n
@@ -268,99 +265,101 @@
 
    1. 简单数组去重:
 
-      ```
-        let array = [1, 2, 13, 4, 3, 2, 4, 4, 3, 5, 3, 4, 5, 4, 6, 1, 6, 4, 4, 1, 2, 1, 3]
-        // 理论值: [1,2,13,4,3,4,5,6]
-        function uniq1(array) {
-            return [...new Set(array)]
-        }
+      ```js
+      let array = [
+        1, 2, 13, 4, 3, 2, 4, 4, 3, 5, 3, 4, 5, 4, 6, 1, 6, 4, 4, 1, 2, 1, 3,
+      ];
+      // 理论值: [1,2,13,4,3,4,5,6]
+      function uniq1(array) {
+        return [...new Set(array)];
+      }
 
-        function uniq2(array) {
-            let obj = {}
-            for (let i = 0, j = array.length; i < j; i++) {
-                if (!obj[array[i]]) {
-                    obj[array[i]] = true
-                }
-            }
-            return Object.keys(obj)
+      function uniq2(array) {
+        let obj = {};
+        for (let i = 0, j = array.length; i < j; i++) {
+          if (!obj[array[i]]) {
+            obj[array[i]] = true;
+          }
         }
+        return Object.keys(obj);
+      }
 
-        function uniq3(array) {
-            let obj = {}
-            for (let i = 0, j = array.length; i < j; i++) {
-                if (!obj[array[i]]) {
-                    obj[array[i]] = true
-                } else {
-                    i++
-                }
-            }
-            return Object.keys(obj)
+      function uniq3(array) {
+        let obj = {};
+        for (let i = 0, j = array.length; i < j; i++) {
+          if (!obj[array[i]]) {
+            obj[array[i]] = true;
+          } else {
+            i++;
+          }
         }
+        return Object.keys(obj);
+      }
 
-        const res1 = uniq1(array)
-        const res2 = uniq2(array)
-        const res3 = uniq3(array)
+      const res1 = uniq1(array);
+      const res2 = uniq2(array);
+      const res3 = uniq3(array);
       ```
 
    2. 对象数组去重:
 
-      ```
+      ```js
       // 2. 对象数组去重
-        var arr = [
-            {
-                key: '01',
-                value: '乐乐'
-            },
-            {
-                key: '02',
-                value: '博博'
-            },
-            {
-                key: '03',
-                value: '淘淘'
-            },
-            {
-                key: '04',
-                value: '哈哈'
-            },
-            {
-                key: '01',
-                value: '乐乐'
-            }
-        ];
+      var arr = [
+        {
+          key: "01",
+          value: "乐乐",
+        },
+        {
+          key: "02",
+          value: "博博",
+        },
+        {
+          key: "03",
+          value: "淘淘",
+        },
+        {
+          key: "04",
+          value: "哈哈",
+        },
+        {
+          key: "01",
+          value: "乐乐",
+        },
+      ];
 
-        function uniqObj1(array) {
-            let arr = []
-            for (let i = 0, j = array.length; i < j; i++) {
-                let item = array[i]
-                let firstIndex = array.findIndex((i)=>i.key === item.key)
-                if(firstIndex !== i){
-                    i++
-                }else{
-                    arr.push(array[i])
-                }
-            }
-
-            return arr
+      function uniqObj1(array) {
+        let arr = [];
+        for (let i = 0, j = array.length; i < j; i++) {
+          let item = array[i];
+          let firstIndex = array.findIndex((i) => i.key === item.key);
+          if (firstIndex !== i) {
+            i++;
+          } else {
+            arr.push(array[i]);
+          }
         }
 
-        function uniqObj2(array) {
-            let obj = {}
-            for (let i = 0, j = array.length; i < j; i++) {
-                let item = array[i]
-                let key = item.key
-                if (!obj[key]) {
-                    obj[key] = true
-                } else {
-                    array.splice(i, 1)
-                    i++
-                }
-            }
-            return array
-        }
+        return arr;
+      }
 
-        const resObj1 = uniqObj1(arr)
-        const resObj2 = uniqObj2(arr)
+      function uniqObj2(array) {
+        let obj = {};
+        for (let i = 0, j = array.length; i < j; i++) {
+          let item = array[i];
+          let key = item.key;
+          if (!obj[key]) {
+            obj[key] = true;
+          } else {
+            array.splice(i, 1);
+            i++;
+          }
+        }
+        return array;
+      }
+
+      const resObj1 = uniqObj1(arr);
+      const resObj2 = uniqObj2(arr);
       ```
 
 5. 如何避免回调地狱？（一般）
@@ -419,13 +418,13 @@
          3. 重复导入某模块的不同模块时，会一次性加载
          4. 快捷写法
 
-            ```
-            export {add as default};
+            ```js
+            export { add as default };
             // 等同于
             // export default add;
 
             // app.js
-            import { default as foo } from 'modules';
+            import { default as foo } from "modules";
             // 等同于
             // import foo from 'modules';
             ```
@@ -437,25 +436,25 @@
 
       eg:
 
-      ```
+      ```js
       // CommonJS模块
-      let { stat, exists, readfile } = require('fs');
+      let { stat, exists, readfile } = require("fs");
 
       // 等同于
-      let _fs = require('fs'); // 整体加载
+      let _fs = require("fs"); // 整体加载
       let stat = _fs.stat;
       let exists = _fs.exists;
       let readfile = _fs.readfile;
 
       // ES6模块
-      import { stat, exists, readFile } from 'fs'; // 局部加载
+      import { stat, exists, readFile } from "fs"; // 局部加载
       ```
 
 <!-- * finish -->
 
 10. script 加载
 
-```
+```js
    1. <script src="path/to/myModule.js" defer></script>
    // defer: 渲染完再执行,按顺序执行
    2. <script src="path/to/myModule.js" async></script>
@@ -600,7 +599,7 @@
         1.  思路: componentDidMount 阶段/ref 的函数执行阶段进行绑定至真实 DOM 操作，在 componentWillUnmount 阶段进行解绑操作以避免内存泄漏。
         2.  在 Class 组件中[ReactDOM.findDOMNode(component)仅支持 Class 组件], 进行绑定操作
 
-            ```
+            ```js
              componentDidMount() {
                 const $this = ReactDOM.findDOMNode(this)
                 $this.addEventListener('click', this.onDOMClick, false)
@@ -681,35 +680,35 @@
       1. 均可以描述对象或函数
       2. 均允许扩展(extends)
 
-      ```
-      1. type 扩展 type
+      ```ts
+      1; // type 扩展 type
       type Name = {
-         name: string;
-      }
+        name: string;
+      };
 
-      2. interface 扩展 interface
+      2; // interface 扩展 interface
       interface Name {
-         name: string;
+        name: string;
       }
       interface User extends Name {
-         age: number;
+        age: number;
       }
 
-      3. interface 扩展 type
+      3; // interface 扩展 type
       type Name = {
-         name: string;
-      }
+        name: string;
+      };
       interface User extends Name {
-         age: number;
+        age: number;
       }
 
-      1. type 扩展 interface
+      4; // type 扩展 interface
       interface Name {
-         name: string;
+        name: string;
       }
       type User = Name & {
-         age: number;
-      }
+        age: number;
+      };
       ```
 
    2. type 可以 但 interface 不可
