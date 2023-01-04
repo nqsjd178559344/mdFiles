@@ -64,7 +64,7 @@ interface B{
        // 数组
        T[number]
        // 对象
-       Object[keyof T]
+       T[keyof T]
    ```
 
 4. 获取 数组/元组 的 length array["length"]
