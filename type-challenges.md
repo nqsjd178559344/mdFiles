@@ -5,6 +5,8 @@
 4182 Fibonacci
 4425 Greater Than
 5310 Join
+5317 LastIndexOf
+5360 Unique
 
 ### 总结
 
@@ -16,3 +18,26 @@ object[keyof object]
 ```
 
 2. 比较数值大小: 生成两个当前值长度的数组 来比较
+3. 对于数组最后一项单独处理，其余项统一处理
+
+```ts
+eg: ts 实现join
+<Join<['a', 'p', 'p', 'l', 'e'], '-'> =>'a-p-p-l-e'
+
+type Join<T extends string[], U extends string | number> =
+T extends [infer First extends string, ...infer Rest extends string[]]
+? Rest['length'] extends 0
+    ? First
+    : `${First}${U}${Join<Rest, U>}`
+: ''
+
+```
+
+4. ts 去重 [1, 1, 2, 2, 3, 3] => [1, 2, 3]
+
+   ```ts
+   不可先转为联合类型再转回数组
+   ['num',1,2,3,4][number] ==> 'num' | 1 | 2 | 3 | 4
+    but
+   ['num',1,2,3,4,string,number][number] ==> string | number
+   ```
