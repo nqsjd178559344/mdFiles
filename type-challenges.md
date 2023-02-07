@@ -7,6 +7,7 @@
 5310 Join
 5317 LastIndexOf
 5360 Unique
+8640 Number Range
 
 ### 总结
 
