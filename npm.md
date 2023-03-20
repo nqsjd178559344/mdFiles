@@ -12,5 +12,16 @@
 
         ```
 
+6.  nrm
+
+        ```js
+        // 安装
+        npm i -g nrm
+        // 查看当前可使用的源
+        nrm ls
+        // 切换源
+        nrm use xxx
+        // 检测网速
+        nrm test
 
         ```

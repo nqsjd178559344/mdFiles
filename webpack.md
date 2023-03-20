@@ -49,15 +49,11 @@
    2. 开发环境安装: npm install webpack webpack-cli -D === --save -dev
    3. 安装指定版本: npm install webpack@4.16.1
    4. 查看可安装版本: npm info
-   5. nrm 按照: npm install -g nrm
-   6. 查看当前使用源: nrm ls
-   7. 切换源: nrm use xxx
-   8. 检测网速: nrm test
-   9. 安装入 dependencies: npm install webpack webpack-cli -D === --save
+   5. 安装入 dependencies: npm install webpack webpack-cli -D === --save
       1. 成功后 package.json 中新增两个包: dependencies/devDependencies
-   10. 查看版本:
-   11. webpack -v : 全局版本
-   12. npx webpack -v: 当前版本
+   6. 查看版本:
+   7. webpack -v : 全局版本
+   8. npx webpack -v: 当前版本
 
 ---
 
