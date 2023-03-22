@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const names = [
+        ["zhang", "张"],
+        ["zhang", "章"],
+        ["li", "李"],
+      ];
+
+      // Set
+      const nameSet = new Set(names.map((item) => item[1]));
+
+      console.log(nameSet.has("zhang"));
+      console.log(nameSet.has("李"));
+
+      // Map
+      //   const names = [
+      //     ["zhang", "张"],
+      //     ["zhang", "章"],
+      //     ["li", "李"],
+      //   ];
+
+      //   批量设置;
+      //   const nameMap = new Map(names);
+
+      //   单个设置
+      //   const nameMap = new Map();
+      //   nameMap.set("zhang", "张");
+      //   nameMap.set("zhang", "章");
+      //   nameMap.set("li", "李");
+
+      //   console.log(nameMap.get("zhang"));
+      //   console.log(nameMap.get("li"));
+    </script>
+  </body>
+</html>
