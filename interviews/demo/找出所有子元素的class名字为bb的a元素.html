@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>找出所有子元素的class名字为bb的a元素</title>
+    <style>
+      .a {
+        width: 20px;
+        height: 20px;
+        background: pink;
+        margin: 10px;
+      }
+      .bg-yellow {
+        background-color: yellow !important;
+      }
+      /* 方法1 */
+      .a:has(.bb) {
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="a">
+        <div class="aa"></div>
+      </div>
+      <div class="a">
+        <div class="aa"></div>
+      </div>
+      <div class="a">
+        <div class="aa"></div>
+      </div>
+      <div class="a">
+        <div class="aa"></div>
+      </div>
+      <div class="a">
+        <div class="aa"></div>
+      </div>
+      <div class="a">
+        <div class="bb"></div>
+      </div>
+      <div class="a">
+        <div class="bb"></div>
+      </div>
+    </div>
+    <!-- 方法2 -->
+    <!-- <script>
+      document.querySelectorAll(".bb").forEach((item) => {
+        console.log(item.closest(".a"));
+        item.closest(".a").classList.add("bg-yellow");
+      });
+    </script> -->
+  </body>
+</html>
