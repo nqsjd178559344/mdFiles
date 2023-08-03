@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>0.5px_border</title>
+    <style>
+      body {
+        margin: 20px;
+        display: flex;
+        column-gap: 20px;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background: pink;
+        box-sizing: border-box;
+      }
+
+      .box1 {
+        border: 1px solid salmon;
+      }
+      .box2 {
+        border: 0.5px solid salmon;
+      }
+      .box3 {
+        position: relative;
+      }
+      .box3::after {
+        position: absolute;
+        content: "";
+        width: 200%;
+        height: 200%;
+        border: 1px solid salmon;
+        box-sizing: border-box;
+        transform: scale(0.5);
+        transform-origin: top left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+  </body>
+</html>
