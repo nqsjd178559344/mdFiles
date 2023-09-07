@@ -30,6 +30,19 @@
    innerHTML: `<span style="color:red">test1</span> test2`
    innerText: test1
 
+   ```tsx
+   // 如何将 innerHTML 内容转换成 innerText
+   const text = document.getElementById("test");
+   function removeTag(fragment) {
+     return (
+       new DOMParser().parseFromString(fragment, "text/html").body
+         .textContent || ""
+     );
+   }
+
+   text.innerText === removeTag(text.innerHTML);
+   ```
+
 ## CSS
 
 <!-- * finish -->
