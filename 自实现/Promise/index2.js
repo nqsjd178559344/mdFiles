@@ -136,7 +136,9 @@ class MyPromise {
     return new MyPromise((resolve, reject) => {
       if (!Array.isArray(promises)) {
         reject();
-        return;
+      }
+      if (!promises.length) {
+        resolve([]);
       }
       const length = promises.length;
       let count = 0;
@@ -156,13 +158,53 @@ class MyPromise {
       }
     });
   }
+
+  allSettled(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (!Array.isArray(promises)) {
+        reject();
+      }
+
+      if (!promises.length) {
+        resolve([]);
+      }
+
+      const length = promises.length;
+      let values = [];
+      function oneSettled(index, value) {
+        values[index] = value;
+
+        if (values.length === length) {
+          resolve(values);
+        }
+      }
+
+      for (let index = 0; index < length; index++) {
+        const item = promises[index];
+        const _item = this.#isPromiseLike(item) ? item : this.resolve(item);
+        _item.then(
+          (value) => {
+            oneSettled(index, { status: FULFILLED, value });
+          },
+          (error) => {
+            oneSettled(index, { status: REJECTED, reason: error });
+          }
+        );
+      }
+    });
+  }
+
   // 返回第一个率先改变状态的实例，且状态跟随其一起改变
   race(promises) {
     return new MyPromise((resolve, reject) => {
       if (!Array.isArray(promises)) {
         reject();
-        return;
       }
+
+      if (!promises.length) {
+        resolve([]);
+      }
+
       for (let index = 0; index < promises.length; index++) {
         const item = promises[index];
         const _item = this.#isPromiseLike(item) ? item : this.resolve(item);
@@ -172,14 +214,11 @@ class MyPromise {
     });
   }
 
-  allSettled() {}
-
   finally(callback) {
-    const P = this.constructor;
     return this.then(
-      (value) => P.resolve(callback()).then(() => value),
+      (value) => this.resolve(callback()).then(() => value),
       (error) =>
-        P.resolve(callback()).then(() => {
+        this.resolve(callback()).then(() => {
           throw error;
         })
     );
@@ -379,9 +418,24 @@ class MyPromise {
 // });
 
 // todo 测试Promise.all
+// const p1 = new MyPromise().resolve(1),
+//   p2 = new MyPromise().resolve(2),
+//   p3 = new MyPromise().resolve(3);
 // new MyPromise().all([p1, p2, p3]).then(function (value) {
 //   console.log(value, "~value");
 // });
+
+// const p1 = new MyPromise().resolve(1),
+//   p2 = new MyPromise().resolve(2),
+//   p3 = new MyPromise().reject(3);
+// new MyPromise().all([p1, p2, p3]).then(
+//   function (value) {
+//     console.log(value, "~value");
+//   },
+//   (error) => {
+//     console.log(error, "~error");
+//   }
+// );
 
 // todo 测试Promise.race
 // const p1 = new MyPromise((resolve) => {
@@ -420,14 +474,33 @@ class MyPromise {
 //   console.log(value, "~value");
 // });
 
-// todo 测试Promise.finally
-// new MyPromise((resolve, reject) => resolve(111)).finally(() => {
-//   console.log("finally");
-// });
+// todo 测试Promise.finally1
+// new MyPromise((resolve) => resolve(111))
+//   .finally(() => {
+//     console.log("finally");
+//   })
+//   .then(
+//     (value) => {
+//       console.log(value, "~value");
+//     },
+//     (error) => {
+//       console.log(error, "~error");
+//     }
+//   );
 
-// const p2 = new MyPromise((_, reject) => reject(2)).finally(() => {
-//   console.log("finally2");
-// });
+// todo 测试Promise.finally2
+// const p2 = new MyPromise((_, reject) => reject(2))
+//   .finally(() => {
+//     console.log("finally2");
+//   })
+//   .then(
+//     (value) => {
+//       console.log(value, "~value");
+//     },
+//     (error) => {
+//       console.log(error, "~error");
+//     }
+//   );
 
 // todo 测试Promise.retry
 // new MyPromise()
@@ -467,3 +540,20 @@ class MyPromise {
 //     console.log(error, "~error");
 //   }
 // );
+
+// todo 测试Promise.allSettled1
+// const resolved = new MyPromise().resolve(42);
+// const rejected = new MyPromise().reject(-1);
+
+// const allSettledPromise = new MyPromise().allSettled([resolved, rejected,4]);
+
+// allSettledPromise.then(function (results) {
+//   console.log(results, "~results");
+// });
+
+// todo 测试Promise.allSettled2
+// const allSettledPromise = new MyPromise()
+//   .allSettled([])
+//   .then(function (results) {
+//     console.log(results, "~results");
+//   });
