@@ -38,6 +38,8 @@ function sum2(...args) {
   console.log(result1, result2);
 })();
 
+// 变种：如果后端设置了并发限制，一次不能请求超过三个，怎么办？
+
 // 2.判断输出并解释
 Promise.resolve() // pr1
   .then(() => {
@@ -83,14 +85,14 @@ Promise.resolve() // pr2
     console.log(1);
   }
 
-  Promise.resolve(4).then(()=>完成当前promise)
+  Promise.resolve(4).then(()=>完成当前promise //  微任务)
 
   () => {
     // p2
     console.log(2);
   }
 
-  ()=>完成当前promise
+  ()=>完成当前promise //  微任务
 
   () => {
     // p3
