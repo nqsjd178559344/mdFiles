@@ -30,13 +30,27 @@ const res4 = stringify({ a: 3, 山: "月" });
 
 console.log(res4, "~res4");
 
+// a=3&b=
+const res5 = stringify({ a: 3, b: [1, 2, 3] });
+
+console.log(res5, "~res5");
+
+// a=3&b=
+const res6 = stringify({
+  a: 3,
+  b: function () {
+    return "b";
+  },
+});
+
 function stringify(object) {
   let result = "";
   for (const key in object) {
     const value = object[key];
-    // const noValue =
+    const noValue =
+      typeof value === "object" || typeof value === "function" || !value;
     const target = `&${encodeURIComponent(key)}=${
-      value ? encodeURIComponent(value) : ""
+      !noValue ? encodeURIComponent(value) : ""
     }`;
     result += target;
   }
