@@ -45,13 +45,11 @@ const e5 = encode("aaab", 1);
 
 // console.log(e5, "e5");
 // todo 如果只出现两次，不进行编码，如 abbcccddddeeeffg -> abbc3d4e3ffg
-
 const e6 = encode("abbcccddddeeeffg", 2);
 
 // console.log(e6, "e6");
 
 // todo 如果进行解码，碰到数字如何处理？
-
 function decode(string) {
   let res = "";
   const array = string.split("");

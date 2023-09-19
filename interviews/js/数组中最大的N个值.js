@@ -24,7 +24,6 @@ function getTwoMax(array) {
       max = element;
     } else if (element > secondMax) {
       secondMax = element;
-    } else {
     }
   }
 
