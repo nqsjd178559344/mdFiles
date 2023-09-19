@@ -27,6 +27,24 @@ function findAllTwoSum(array, sum) {
   return result;
 }
 
+// 双指针
+function twoSum2(array, target) {
+ let left = 0,right = array.length - 1
+ while(left < right){
+  const leftNumber = array[left],rightNumber = array[right]
+  const sum = leftNumber + rightNumber
+  if(sum > target) {
+    right --
+  }else if(sum < target){
+    left ++
+  }else{
+    return [leftNumber,rightNumber]
+  }
+ }
+
+ return null
+}
+
 //=> [5, 10]
 const res1 = findAllTwoSum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15);
 console.log(res1, "~res1");
@@ -34,3 +52,11 @@ console.log(res1, "~res1");
 //=> null
 const res2 = findAllTwoSum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 150);
 console.log(res2, "~res2");
+
+//=> [5, 10]
+const res11 = twoSum2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15);
+console.log(res11, "~res11");
+
+//=> null
+const res21 = twoSum2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 150);
+console.log(res21, "~res21");
