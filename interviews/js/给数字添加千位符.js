@@ -11,19 +11,21 @@ function numberThousands(count, separator = ",") {
   return result.slice(1);
 }
 
+const numberThousands2 = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 // => '1,234,567,898'
-const res = numberThousands(1234567898);
+const res = numberThousands2(1234567898);
 console.log(res, "res");
 
 //=> '123'
-const res1 = numberThousands(123);
+const res1 = numberThousands2(123);
 console.log(res1, "res1");
 
 //=> '1,234,567'
-const res2 = numberThousands(1234567);
+const res2 = numberThousands2(1234567);
 console.log(res2, "res2");
 
 // todo bigInt显示错误
 // => '123,456,789,876,543,210'
-const res4 = numberThousands(12345678987654321);
+const res4 = numberThousands2(12345678987654321);
 console.log(res4, "res4");
