@@ -1,14 +1,14 @@
 1. js 调用函数 三种方式 :
-    ```
-    func(1,2) ≈ window.func(window,1,2) / func(undefined,1,2) 
-    obj.child.method(1,2) ≈ obj.child.method(obj.child,1,2)
+    ```js
+    func(1,2) ≈ window.func.call(window,1,2) / func.call(undefined,1,2) 
+    obj.child.method(1,2) ≈ obj.child.method.call(obj.child,1,2)
     func.call(context,1,2)
     ```
 
 2. this 指向的是 call 的第一个参数 (context)
     eg:
-    ```
-        1. let obj = {
+    ```js
+        let obj = {
                 fn:function(){
                     console.log(this)
                 }
@@ -28,6 +28,6 @@
    2. 原理: JavaScript 引擎的处理方法是，先在全局空间生成这个箭头函数，然后赋值给对应对象，这导致箭头函数内部的this指向全局对象
 
 总结:
-实际上依然为，谁调用则指向谁
+实际上依然为，this指向调用函数的对象(有操作符的情况下除外)
 
 
