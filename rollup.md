@@ -3,6 +3,8 @@
     而 webpack 比较适合打包一些应用，例如 SPA 或者同构项目等等。
  -->
 
+ [使用教程](https://www.ruanyifeng.com/blog/2022/05/rollup.html)
+
 ```js
 // https://www.npmjs.com/package/@rollup/plugin-babel
 import { babel } from "@rollup/plugin-babel";
