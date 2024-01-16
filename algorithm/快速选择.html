@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 一个未排序过的随机整数数组，给定一个数字n，找出当前随机整数数组的第n大的数，写出个通用函数
+    // 1. 先排序再找
+    // 2. 如果不事先排序，可以使用快速选择（Quickselect）算法来找出第n大的数。快速选择算法是快速排序算法的变种，它可以在平均情况下以线性时间复杂度（O(n)）找出未排序数组中第n大的数。
+
+    // 以下是使用快速选择算法实现的通用函数：
+
+    function findNthLargest(arr, n) {
+      if (n > arr.length) {
+        return "n超出数组长度";
+      }
+      //   将数组分成两个部分，左边的部分都比右边的部分小
+      function partition(arr, left, right) {
+        let pivot = arr[right];
+        let i = left - 1;
+        for (let j = left; j < right; j++) {
+          if (arr[j] >= pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+        }
+        [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]];
+        return i + 1;
+      }
+      function quickSelect(arr, left, right, n) {
+        if (left === right) {
+          return arr[left];
+        }
+        let pivotIndex = partition(arr, left, right);
+        if (n === pivotIndex) {
+          return arr[n];
+        } else if (n < pivotIndex) {
+          return quickSelect(arr, left, pivotIndex - 1, n);
+        } else {
+          return quickSelect(arr, pivotIndex + 1, right, n);
+        }
+      }
+      return quickSelect(arr, 0, arr.length - 1, n - 1);
+    }
+
+    const arr = [3, 6, 2, 8, 1, 9, 4];
+    console.log(findNthLargest(arr, 3)); // 输出6
+
+    // 这个函数使用了两个嵌套函数：`partition()` 和 `quickSelect()`。`partition()` 函数用于将数组分成两个部分，左边的部分都比右边的部分小。`quickSelect()` 函数使用递归的方式，在每次迭代中选择一个枢轴元素，将数组分成两个部分，然后根据枢轴元素的位置和n的大小关系，递归地在左边或右边部分继续查找第n大的数。在每次迭代中，我们都可以将数组的大小减半，因此算法的时间复杂度为O(n)。
+
+    // 需要注意的是，快速选择算法的最坏时间复杂度为O(n^2)，但是在平均情况下，它的时间复杂度为O(n)。因此，在实际应用中，我们需要根据具体情况来选择算法。
+  </script>
+</html>
