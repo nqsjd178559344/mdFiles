@@ -1,6 +1,6 @@
 // ? 1. 冒泡排序 √
 let array = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
-function sort1(arr) {
+function bubbleSort(arr) {
   let length = arr.length; // 4
   for (let i = 0; i < length - 1; i++) { // i < 4
     for (let j = 0; j < length - 1 - i; j++) { // 3-i
@@ -35,8 +35,8 @@ function sort2(arr) {
 
 // ? 快排 √
 // let arr = [3, 44, 38, 5, 47, 15, 36, middleItem = 26, 27, 2, 46, 4, 19, 50, 48];
-function sort3(arr) {
-  if (arr.length <= 1) { return arr } // ???
+function quickSort(arr) {
+  if (arr.length <= 1) { return arr } 
   let middleIndex = Math.floor(arr.length / 2)
   let middleItem = arr.splice(middleIndex, 1)[0]
   let left = [], right = [];
@@ -48,7 +48,7 @@ function sort3(arr) {
     }
   }
 
-  let res = sort3(left).concat([middleItem], sort3(right))
+  let res = quickSort(left).concat([middleItem], quickSort(right))
   return res
 }
 
@@ -71,13 +71,13 @@ function sort4(arr) {
 // ? 希尔排序
 
 // ? 归并排序(分成两数组，分别调用归并，最后合起)
-function sort5(arr) {
+function mergeSort(arr) {
   let len = arr.length
   if (len < 2) return arr
   // let result = [],leftIndex = 0,rightIndex = 0;
   let middle = Math.floor(len / 2), left = arr.slice(0, middle), right = arr.slice(middle)
 
-  return merge(sort5(left), sort5(right))
+  return merge(mergeSort(left), mergeSort(right))
 }
 
 function merge(left, right) {
@@ -111,7 +111,7 @@ console.log(array, '~~~~~~~~~~')
 // const res2 = sort2(array)
 // const res3 = sort3(array)
 // const res4 = sort4(array)
-const res5 = sort5(array)
+const res5 = mergeSort(array)
 
 
 // ! 冒泡√ | 快排√ | 选择排序√ | 堆排序 | 希尔排序 | 插排√ 
