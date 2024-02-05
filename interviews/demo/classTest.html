@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默认定义在后面的样式会覆盖定义在前面的，与使用时的位置无关</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 20px solid yellow;
+            background-clip: padding-box;
+            padding: 20px;
+        }
+
+        .pink {
+            background: pink;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .blueviolet {
+            background: blueviolet;
+        }
+
+        .purple {
+            background: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box pink blue"></div>
+
+    <div class="box blue pink"></div>
+
+    <div class="box purple blueviolet"></div>
+
+    <div class="box blueviolet purple"></div>
+
+    <div class="box purple pink blueviolet blue"></div>
+    <!-- 默认定义在后面的样式会覆盖定义在前面的，与使用时的位置无关 -->
+</body>
+
+</html>
