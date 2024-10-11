@@ -8,7 +8,36 @@
     2. 可服务器端渲染
    ```
 
-2. getStaticPaths / getStaticProps / getServerSideProps
+2. nextjs的三种模式
+
+      1. SSR
+          ```tsx
+          getServerSideProps 
+          // 返回值
+          {
+              props: { data } 
+            };
+          ```
+
+   2. ISR
+      1. 定时刷新: getStaticProps 的 revalidate 属性 // 重新生成静态页面的时间间隔（s）
+      ```tsx
+      // 返回值
+      {
+          props: {},
+          revalidate: 60  // 表示每 60 秒重新验证并可能重新生成页面
+        };
+        ```
+      2. 某些条件时刷新: [revalidatePath(path: string, type?: 'page' | 'layout')](https://nextjs.org/docs/app/api-reference/functions/revalidatePath)
+      ```tsx
+        // API端点触发
+        import { revalidatePath } from 'next/cache';
+        在api/对应页面的 handler 中触发
+      ```
+      
+      3. SSG
+      静态页面,有利于SEO
+
 3. 发邮件
 
    1. 在 /api 文件夹下 创建与指定文件名字相同的文件
