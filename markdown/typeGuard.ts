@@ -31,7 +31,7 @@ export function unsafeAssertType<T>(_value: unknown): asserts _value is T {
   return;
 }
 
-// vite下校验
+// 测试工具 [vitest](https://cn.vitest.dev/guide/)
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest;
 
