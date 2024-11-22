@@ -2,10 +2,10 @@
 
 function reverseString(str) {
   // 实现代码
-  if (!str) return "";
-  const first = str[0];
-  const rest = str.slice(1);
+  // todo 只
 
-  return reverseString(rest) + first;
+  if (!str) return "";
+
+  return reverseString(str.slice(1)) + str[0];
 }
 console.log(reverseString("hello")); // 输出 'olleh'

@@ -3,11 +3,6 @@
 const arr = [2, 3, 4];
 function productOfArray(arr) {
   // 实现代码
-
-  if (!arr.length) return 1;
-  const [first, ...rest] = arr;
-
-  return first * productOfArray(rest);
 }
 console.log(productOfArray(arr)); // 输出 24
 

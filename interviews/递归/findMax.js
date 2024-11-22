@@ -4,15 +4,11 @@ const arr = [5, 8, 3, 10, 6];
 function findMax(arr) {
   // 实现代码
 
-  const defaultMin = -Infinity;
+  if (!arr.length) return 0;
 
-  if (arr.length === 1) return arr[0] ?? defaultMin;
+  const restResult = findMax(arr.slice(1));
 
-  const [first = defaultMin, ...rest] = arr;
-
-  let restMax = findMax(rest);
-
-  return first > restMax ? first : restMax;
+  return arr[0] > restResult ? arr[0] : restResult;
 }
 console.log(findMax(arr)); // 输出 10
 

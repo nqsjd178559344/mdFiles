@@ -2,11 +2,11 @@
 
 function sumArray(arr) {
   // 实现代码
-  if (!arr.length) return 0;
-  const [target = 0, ...rest] = arr;
 
-  return target + sumArray(rest);
+  if (!arr.length) return 0;
+
+  return arr[0] + sumArray(arr.slice(1));
 }
 console.log(sumArray([1, 2, 3, 4, 5])); // 输出 15
 
-console.log(sumArray([1, 2, 3])); // 输出 15
+console.log(sumArray([1, 2, 3])); // 输出 6

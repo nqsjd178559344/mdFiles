@@ -1,6 +1,5 @@
 // 给定一个整数数组，使用递归判断该数组是否按升序排列。
 
-const arr = [1, 2, 3, 4, 5];
 function isSorted(arr) {
   // 实现代码
   if (arr.length <= 1) return true;
@@ -10,9 +9,11 @@ function isSorted(arr) {
 
   if (first >= second) return false;
 
-  return isSorted(arr.slice(1)) ?? true;
+  const rest = arr.slice(1) ?? true;
+
+  return isSorted(rest);
 }
-console.log(isSorted(arr)); // 输出 true
+console.log(isSorted([1, 2, 3, 4, 5])); // 输出 true
 
 console.log(isSorted([1, 2, 3, 4, 5, 6, 5])); // 输出 false
 

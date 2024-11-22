@@ -15,20 +15,13 @@ tree.left.left = new TreeNode(4);
 tree.left.right = new TreeNode(5);
 
 function countNodes(root) {
+  if (!root.value) return 0;
   // 实现代码
+  let count = 1;
 
-  let result = 0;
+  if (root.left) count += countNodes(root.left);
+  if (root.right) count += countNodes(root.right);
 
-  if (root.value) result++;
-
-  if (root.left) {
-    result += countNodes(root.left);
-  }
-
-  if (root.right) {
-    result += countNodes(root.right);
-  }
-
-  return result;
+  return count;
 }
 console.log(countNodes(tree)); // 输出 5

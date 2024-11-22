@@ -21,14 +21,14 @@ const tree = {
 
 function traverseTree(tree) {
   // 实现代码
+  // return
   let result = [];
 
-  result.push(tree.value);
+  if (tree.value) result.push(tree.value);
 
   if (tree.children.length) {
     for (const element of tree.children) {
-      //   result.push(...traverseTree(element));
-      result.concat(traverseTree(element));
+      result = result.concat(...traverseTree(element));
     }
   }
 

@@ -2,10 +2,10 @@
 function factorial(n) {
   // 实现代码
 
-  if (n <= 1) return 1;
+  if (n === 1) return 1;
 
   return n * factorial(n - 1);
 }
-console.log(factorial(5)); // 输出 120
+console.log(factorial(5)); // 输出 5 * 4 * 3 * 2 * 1 = 120
 
 console.log(factorial(3)); // 输出  3 * 2 * 1 = 6
