@@ -14,9 +14,9 @@
    2. 如有重名，则会带上模块文件名的前缀
    3. 异步引入的模块是会被分到单独的 chunk
 4. 不进行 scope hositing 情况：
-   1. 被多个 chunk 包含的模块 // 如果 hositing 会重复
-   2. 有 cjs 代码的模块 // 不能被分析
-   3. 有 eval 的模块 // 不能被分析
+   1. 被多个 chunk 包含的模块(如果 hositing 会重复)
+   2. 有 cjs 代码的模块(不能被分析)
+   3. 有 eval 的模块(不能被分析)
    4. 用到了 module 变量的模块
    ![](./asset/1.webp)
 
@@ -31,13 +31,11 @@
 1. 工作原理
    1. 在 seal 阶段的 optimizeChunkModules 的 hook 生效
    2. 会遍历所有模块，把不适合 scope hositing 的模块过滤掉，同时记录下不合适的原因。
-   3. 剩下的有的是入口模块，有的是其他的可以被 scope hositing 的模块，分别放到两个集合中
-   4. 从每个入口模块开始，递归分析 import，把可以被 scope hositing 的模块都放到 ConcatConfiguration 对象里，它的作用就是记录根模块和子模块
-   5. 遍历这些配置对象来创建一个个新的 module 对象，这些新的 module 对象包含的子 module 都是可以被一起 scope hositing 的。
-   6. 把这个 module 包含的子 module 从之前的 chunk 里删掉，把这个 module 替换成新的 module。
+   3. 剩下的有的是入口模块，有的是其他的可以被 scope hositing 的模块，放到 ConcatConfiguration 对象里，它的作用就是记录根模块和子模块
+   4. 遍历 ConcatConfiguration 对象来创建一个个新的 ConcatenatedModule 类型的 module ，替换之前的 module。
 2. 作用
-   1. 代码生成的时候会调用每个 module 对象的 codeGeneration 方法：
-      1. 遍历模块，根据类型分别打上 concatenated 和 external 的标记（单独一个模块，还是合并到一起）（concatenated 通过 AST 查找是否有同名变量）
+   1. 代码生成的时候会调用每个 ConcatenatedModule 对象的 codeGeneration 方法：
+      1. 遍历模块，根据类型分别打上 concatenated 和 external 的类型标记（单独一个模块，还是合并到一起）（concatenated 通过 AST 查找是否有同名变量）
       2. 拼接代码字符串的时候就会根据不同的类型做不同的处理、使用不同的模版
 
 
