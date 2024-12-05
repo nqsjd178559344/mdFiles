@@ -22,7 +22,7 @@
 
 ### webpack 流程
  ![](./asset/2.webp)
-1. make 是从入口模块开启，递归解析依赖，生成模块依赖图 ModuleGraph。
+1. make 是从入口模块开启，递归解析依赖（用对应的 loader 来做模块的编译），生成模块依赖图 ModuleGraph。
 2. seal 阶段是把 module 分到不同的 chunk，也就是分组，生成 ChunkGraph。
 3. emit 阶段把每个 chunk 使用模版打印出来，生成代码，也就是 assets。
 4. 之后把 assets 写入磁盘就好了。
