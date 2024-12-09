@@ -2,8 +2,6 @@
 
 function reverseString(str) {
   // 实现代码
-  // todo 只
-
   if (!str) return "";
 
   return reverseString(str.slice(1)) + str[0];
