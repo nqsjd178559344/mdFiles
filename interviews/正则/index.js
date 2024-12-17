@@ -83,9 +83,9 @@ const flag9 = [
 const flag92 = ["A#BCA#BC", "abc", "123"].every((item) => !reg9.test(item));
 console.log(flag9 && flag92, "~flag9");
 
-// todo<无法判断相邻> 用正则表达式匹配一个字符串，至少包含两组连续的数字，且每组数字的长度至少为 2 。
+// todo<无法判断相邻,所以直接判断4个相邻的数字> 用正则表达式匹配一个字符串，至少包含两组连续的数字，且每组数字的长度至少为 2 。
 
-const reg10 = /^(?=.*\d{2})(?=.*\d{2}).+$/;
+const reg10 = /^(?=.*\d{4}).+$/;
 
 const flag10_1 = [
   "1234Abc@",
@@ -97,6 +97,8 @@ const flag10_1 = [
 const flag10_2 = ["12A#BC", "abc", "123", "1a2b", "12abc34"].every(
   (item) => !reg10.test(item)
 );
+
+console.log(flag10_1 && flag10_2, "~flag10_2");
 
 // 写出一个正则表达式，匹配一个至少包含 3 个元音字母（a、e、i、o、u）的字符串。
 
