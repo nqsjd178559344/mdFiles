@@ -15,7 +15,7 @@ const reg2 = /^[0-9A-Za-z_]{6,12}$/;
 const flag2 = ["abc123_", "user_456", "myStr90"].every((item) =>
   reg2.test(item)
 );
-const flag21 = ["a、abc1234567、abc-123"].every(
+const flag21 = ["a", "abc1234567", "abc-123"].every(
   (item) => !/^[0-9A-Za-z_]{6,12}$/g.test(item)
 );
 console.log(flag2 && flag21, "~flag2");
@@ -72,7 +72,7 @@ console.log(flag8 && flag82, "flag8");
 // 构建一个正则表达式，匹配一个字符串，要求以小写字母开头，至少包含一个大写字母、一个数字，且长度在 8 到 15 个字符之间。
 
 // const reg9 = /^[a-z](?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{6,13}$/;
-const reg9 = /^[a-z](?=.*[A-Z])(?=.*\d).{7,13}$/;
+const reg9 = /^[a-z](?=.*[A-Z])(?=.*\d).{7,14}$/;
 const flag9 = [
   "abcD1234",
   "pqrstU7q",
@@ -111,9 +111,9 @@ console.log(flag11_1 && flag11_2, "~flag11");
 
 // 设计一个正则表达式，匹配一个字符串，以大写字母开头，中间包含至少一个小写字母和一个特殊字符，以数字结尾，且长度在 6 到 10 个字符之间。
 
-const reg12 = /^[A-Z](?=.*[a-z])(?=.*[@#$%^&*]).{2,6}[0-9]$/;
+const reg12 = /^[A-Z](?=.*[a-z])(?=.*[@#$%^&*]).{4,8}[0-9]$/;
 
-const flag12_1 = ["Acd@8", "Bfg#9"].every((item) => reg12.test(item));
+const flag12_1 = ["Acd@n8", "Bfg#q9"].every((item) => reg12.test(item));
 const flag12_2 = ["aBc12", "ABCDE1", "A123456"].every(
   (item) => !reg12.test(item)
 );
