@@ -10,3 +10,9 @@
          vite 生成 esm，每次都只改动自身
          vite将npm_modules trans 为 esm， 存储在 .vite 文件中
          vite热更新：HMR 客户端使用 websocket 与 vite 开发服务器建立连接([热模块更换很容易 - Bjorn Lu](https://bjornlu.com/blog/hot-module-replacement-is-easy))
+5. 部分配置：
+```ts
+  build: {
+    sourcemap: true, // 包括但不限于esbuild处理的部分、资源文件的处理（如图片、字体等）以及模块的合并和优化。
+  },
+```
