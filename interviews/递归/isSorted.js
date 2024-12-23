@@ -9,7 +9,7 @@ function isSorted(arr) {
 
   if (first >= second) return false;
 
-  const rest = arr.slice(1) ?? true;
+  const rest = arr.slice(1);
 
   return isSorted(rest);
 }
