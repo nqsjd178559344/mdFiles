@@ -16,3 +16,37 @@
     sourcemap: true, // 包括但不限于esbuild处理的部分、资源文件的处理（如图片、字体等）以及模块的合并和优化。
   },
 ```
+6. 自定义打包命令
+   1. 将   
+      ```json
+         "build": "vite build --mode demo1",
+      ```
+      ```ts
+      import { defineConfig } from "vite";
+      import baseConfig from "../feature/vite.config";
+
+      const getBuildMode = () => {
+      const targetIndex = process.argv.indexOf("--mode");
+      if (targetIndex !== -1) {
+         return process.argv[targetIndex + 1];
+      }
+      return;
+      };
+      const mode = getBuildMode();
+      const getDateStamp = () => {
+      const now = new Date();
+      const year = now.getFullYear().toString().slice(-2); // 获取年份后两位
+      const month = (now.getMonth() + 1).toString().padStart(2, "0"); // 获取月份，不足两位补0
+      const day = now.getDate().toString().padStart(2, "0"); // 获取日期，不足两位补0
+      return `${year}${month}${day}`;
+      };
+
+      export default defineConfig({
+      ...baseConfig,
+      base: mode ? `/${mode}/next` : undefined,
+      build: {
+         // 如果没找到参数，设置一个默认值
+         outDir: `dist_${mode ?? "default"}_${getDateStamp()}`,
+      },
+      });
+```
