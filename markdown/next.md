@@ -10,7 +10,7 @@
 
 2. nextjs的三种模式
 
-      1. SSR
+      1. SSR<在服务器端生成 HTML 页面，然后发送给客户端>
           ```tsx
           getServerSideProps 
           // 返回值
@@ -19,7 +19,7 @@
             };
           ```
 
-   2. ISR
+   2. ISR<在页面构建后，根据设定的时间间隔或事件触发重新生成静态页面>
       1. 定时刷新: getStaticProps 的 revalidate 属性 // 重新生成静态页面的时间间隔（s）
       ```tsx
       // 返回值
@@ -35,7 +35,7 @@
         在api/对应页面的 handler 中触发
       ```
       
-      3. SSG
+      3. SSG<在构建阶段进行页面渲染>
       静态页面,有利于SEO
 
 3. 发邮件
@@ -110,3 +110,10 @@
         });
       };
       ```
+4. output:export | standalone 的区别
+   1. standalone 支持 SSR 和 ISR
+   2. export 
+      1. 只支持 SSG
+      2. 动态路由（如pages/post/[id].js），需要通过getStaticProps函数进行静态数据获取，并在构建时生成相应的静态页面。如果使用了getServerSideProps，则会在构建时发出警告，因为该模式下不支持服务器端渲染。
+      <!-- 通常情况下，Next.js 会对项目中引入的图片进行自动优化。它会根据不同设备的屏幕分辨率、网络状况等因素，生成合适尺寸和格式（如 WebP、AVIF 等）的图片，以减少图片文件大小，加快页面加载速度，提升用户体验。例如，对于高清屏幕设备，Next.js 会提供更高分辨率的图片，而对于移动设备或网络较差的用户，会提供经过压缩的小尺寸图片。 -->
+      3. images.unoptimized 需为 true // 禁用优化
