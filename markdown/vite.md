@@ -22,31 +22,38 @@
          "build": "vite build --mode demo1",
       ```
       ```ts
-      import { defineConfig } from "vite";
-      import baseConfig from "../feature/vite.config";
+         import { defineConfig, loadEnv, ConfigEnv } from "vite";
+         import baseConfig from "../feature/vite.config";
 
-      const getBuildMode = () => {
-      const targetIndex = process.argv.indexOf("--mode");
-      if (targetIndex !== -1) {
-         return process.argv[targetIndex + 1];
-      }
-      return;
-      };
-      const mode = getBuildMode();
-      const getDateStamp = () => {
-      const now = new Date();
-      const year = now.getFullYear().toString().slice(-2); // 获取年份后两位
-      const month = (now.getMonth() + 1).toString().padStart(2, "0"); // 获取月份，不足两位补0
-      const day = now.getDate().toString().padStart(2, "0"); // 获取日期，不足两位补0
-      return `${year}${month}${day}`;
-      };
-
-      export default defineConfig({
-      ...baseConfig,
-      base: mode ? `/${mode}/next` : undefined,
-      build: {
-         // 如果没找到参数，设置一个默认值
-         outDir: `dist_${mode ?? "default"}_${getDateStamp()}`,
-      },
-      });
-```
+         /**
+            const getBuildMode = () => {
+               const targetIndex = process.argv.indexOf("--mode");
+               if (targetIndex !== -1) {
+                  return process.argv[targetIndex + 1];
+               }
+               return;
+            };
+            const mode = getBuildMode(); // 可直接传入
+         */
+        
+         const getDateStamp = () => {
+            const now = new Date();
+            const year = now.getFullYear().toString().slice(-2); // 获取年份后两位
+            const month = (now.getMonth() + 1).toString().padStart(2, "0"); // 获取月份，不足两位补0
+            const day = now.getDate().toString().padStart(2, "0"); // 获取日期，不足两位补0
+            return `${year}${month}${day}`;
+         };
+         
+         export default defineConfig(({ mode }: ConfigEnv) => {
+            // 新增 .env.demo1 文件,维护其他环境变量
+            const env = loadEnv(_mode, __dirname);
+            return {
+               ...baseConfig,
+               base: mode ? `/${mode}/next` : undefined,
+               build: {
+                  // 如果没找到参数，设置一个默认值
+                  outDir: `dist_${mode ?? "default"}_${getDateStamp()}`,
+               },
+            };
+         });
+      ```
