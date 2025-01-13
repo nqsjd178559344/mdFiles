@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .parent{
+            height: 300px;
+            width: 300px;
+            background-color: pink;
+        }
+
+        .child{
+            height: 100px;
+            width: 100px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <!-- <iframe src="http://localhost:8000/merakProcess?provider=ImWare.External&token=externaluser" width="1920px" height="1080px" frameborder="0"></iframe> -->
+
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+
+    <script>
+
+        function waitMs(timeout) {
+            return new Promise((resolve) => setTimeout(resolve, timeout));
+        }
+
+        let show = true
+
+        const parent = document.querySelector(".parent");
+        const child = document.querySelector(".child");
+        parent.addEventListener("mouseenter", (event) => {
+            show = true
+            
+            waitMs(250).then(()=>{
+                if(show) console.log('进入父')
+            })
+        });
+
+        child.addEventListener("mouseenter", (event) => {
+           event.stopPropagation()
+           console.log('进入子')
+           show = false
+        });
+    </script>
+</body>
+</html>
