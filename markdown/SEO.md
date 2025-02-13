@@ -16,4 +16,8 @@
    <meta name="description" content={process.env['description']}/>
    <meta name="robots" content="index,follow" />
    <meta name="googlebot" content="index,follow" />
+   <meta name="theme-color" content={process.env['themeColor']} />
    ```
+
+### 特别设置
+1. 不要跟踪：<a rel="nofollow"></a>
