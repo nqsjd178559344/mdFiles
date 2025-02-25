@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSE Chat Demo</title>
+    <style>
+      #chat-box {
+        width: 500px;
+        height: 300px;
+        border: 1px solid #ccc;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chat-box"></div>
+    <input type="text" id="message" placeholder="输入消息..." />
+    <button onclick="sendMessage()">发送</button>
+
+    <script>
+      const chatBox = document.getElementById("chat-box");
+      const messageInput = document.getElementById("message");
+
+      function appendMessage(text, isUser = false) {
+        const div = document.createElement("div");
+        div.textContent = `${isUser ? "用户: " : "AI: "}${text}`;
+        div.style.marginBottom = "10px";
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      async function sendMessage() {
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        appendMessage(message, true);
+
+        messageInput.value = "";
+
+        // todo GET请求
+        // const response = new EventSource('/chat?message=' + encodeURIComponent(message));
+        // response.onmessage = (event) => {
+        //     const data = JSON.parse(event.data)
+        //     appendMessage(data.text)
+        // }
+
+        // response.onerror = (event) => {
+        //     response.close();
+        // }
+
+        try {
+          // todo POST请求
+          const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "text/event-stream"  // 添加这行，表明客户端接受 SSE
+            },
+            
+            body: JSON.stringify({
+              message,
+            }),
+          });
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+
+              const chunk = decoder.decode(value);
+              const lines = chunk.split("\n");
+
+              lines.forEach((line) => {
+                if (line.startsWith("data: ")) {
+                  try {
+                    const data = JSON.parse(line.slice(6));
+                    appendMessage(data.text);
+                  } catch (e) {
+                    console.error("解析消息失败:", e);
+                  }
+                }
+              });
+            }
+
+        } catch (error) {
+          console.error("请求失败:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
