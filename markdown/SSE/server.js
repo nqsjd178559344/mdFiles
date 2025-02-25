@@ -28,7 +28,16 @@ function handleSSEResponse(res, responses) {
   let index = 0;
   const interval = setInterval(() => {
     if (index < responses.length) {
-      res.write(`data: ${JSON.stringify({ text: responses[index] })}\n\n`);
+      const data = JSON.stringify({ text: responses[index] });
+      // 将一条消息分成两部分发送
+      const part1 = `data: ${data.substring(0, data.length / 2)}`;
+      const part2 = `${data.substring(data.length / 2)}\n\n`; // \n\n表示一条 SSE 消息的结束
+
+      res.write(part1);
+      // 延迟100ms发送第二部分
+      setTimeout(() => {
+        res.write(part2);
+      }, 100);
       index++;
     } else {
       clearInterval(interval);
