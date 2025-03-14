@@ -1,0 +1,19 @@
+{
+  "name": "merak-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "merak-cli": "bin/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^8.2.5"
+  }
+}
