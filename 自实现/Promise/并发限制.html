@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>并发限制测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <script>
+      class RequireLimit {
+        constructor(limit) {
+          this.limit = limit ?? Infinity;
+          this.count = 0;
+          this.queue = [];
+        }
+        request(config) {
+          return new Promise((resolve, reject) => {
+            this.queue.push({
+              config,
+              resolve,
+              reject,
+            });
+            this.run();
+          });
+        }
+        async run() {
+          while (this.count < this.limit && this.queue.length > 0) {
+            const { config, resolve, reject } = this.queue.shift();
+            this.count++;
+            try {
+              // 为了看得更清楚，delay 2s
+              const delay = (ms) =>
+                new Promise((resolve) => setTimeout(resolve, ms));
+              await delay(2000);
+              const result = await axios(config);
+              resolve(result);
+            } catch (error) {
+              reject(error);
+            } finally {
+              this.count--;
+            }
+          }
+        }
+      }
+
+      const requireLimit = new RequireLimit(3);
+
+      async function makeRequests() {
+        const urls = Array.from(
+          { length: 10 },
+          (_, i) => `https://api.example.com/data/${i}`
+        );
+
+        const promises = urls.map((url) =>
+          requireLimit.request({
+            method: "GET",
+            url,
+          })
+        );
+
+        await Promise.allSettled(promises);
+      }
+
+      makeRequests();
+    </script>
+  </body>
+</html>
