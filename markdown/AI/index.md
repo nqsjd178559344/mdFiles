@@ -67,8 +67,14 @@
 ### 模型的边界约束
 
 1. 理解能力
-2. 上下文长度
+2. 上下文长度（重点）
 3. 私域知识储备
    但： 越接近上下文上限，或者代码逻辑越复杂，模型的理解能力就会越差
+
+### 怎么让 AI 在大型复杂项目中不拉垮
+
+[](https://juejin.cn/post/7483777309402087434)
+
+[Memory Bank](https://cline.bot/blog/memory-bank-how-to-make-cline-an-ai-agent-that-never-forgets)
 
 ![AI路线图](../../assets/images/AI路线图.webp "AI路线图")
