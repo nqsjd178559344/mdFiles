@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 引入 React 和 React DOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 引入 Babel 用于解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 我们的 React 代码 -->
+    <script type="text/babel">
+      // 创建组件
+      function VirtualList() {
+        const totalLength = 2000;
+        const array = Array.from({ length: totalLength });
+        const showCount = 5;
+        const itemHeight = 40;
+        const bufferSize = 5; //  缓冲区大小
+
+        const [scrollTop, setScrollTop] = React.useState(0);
+        const [visibleRange, setVisibleRange] = React.useState({
+          start: 0,
+          end: 0,
+        });
+        const rootRef = React.useRef(null);
+        const contentRef = React.useRef(null);
+
+        const handleScroll = (e) => {
+          setScrollTop(e.target.scrollTop);
+        };
+
+        React.useEffect(() => {
+          const { clientHeight } = rootRef.current;
+          const start = Math.floor(scrollTop / itemHeight) - bufferSize;
+          const end =
+            Math.ceil((scrollTop + clientHeight) / itemHeight) + bufferSize;
+          setVisibleRange({
+            start: Math.max(0, start),
+            end: Math.min(totalLength, end),
+          });
+        }, [scrollTop]);
+
+        // 获取可视区域内的项目
+        const visibleItems = array.slice(visibleRange.start, visibleRange.end);
+
+        return (
+          <div
+            ref={rootRef}
+            style={{
+              position: "relative",
+              height: "100vh",
+              wdight: "100vw",
+              overflow: "auto",
+              margin: 0,
+            }}
+            onScroll={handleScroll}
+          >
+            <div
+              style={{
+                height: totalLength * itemHeight + "px",
+              }}
+            />
+            <div
+              ref={contentRef}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                transform: `translateY(${
+                  visibleRange.start * itemHeight + "px"
+                })`,
+                width: "100%",
+                height: "100%",
+                willChange: "transform",
+              }}
+            >
+              {visibleItems.map((_, index) => {
+                const itemIndex = visibleRange.start + index;
+                return (
+                  <div
+                    key={itemIndex}
+                    style={{
+                      position: "absolute",
+                      top: index * itemHeight + "px",
+                      left: 0,
+                      height: itemHeight + "px",
+                      width: "100%",
+                    }}
+                  >
+                    我是{itemIndex}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      }
+
+      // 渲染组件到 DOM
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<VirtualList />);
+    </script>
+  </body>
+</html>
