@@ -831,63 +831,42 @@ beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","c
 → 转换路径：hit→hot→dot→dog→cog → 长度 5。
  */
 
-// console.log("hot".includes("ht"), "ht");
-
-function isSubsequence(mainStr, subStr) {
-  // 子串为空时默认存在
-  if (subStr.length === 0) {
-    return true;
-  }
-
-  let subIndex = 0; // 子串指针，记录当前需要匹配的字符位置
-
-  // 遍历主字符串
-  for (let i = 0; i < mainStr.length; i++) {
-    // 如果找到匹配的字符，移动子串指针
-    if (mainStr[i] === subStr[subIndex]) {
-      subIndex++;
-      // 子串所有字符都匹配成功
-      if (subIndex === subStr.length) {
-        return true;
-      }
-    }
-  }
-
-  // 遍历完主串仍未匹配完子串
-  return false;
-}
-
 function bfs6(wordList, beginWord, endWord) {
+  if (beginWord === endWord) return 1;
+  const wordSet = new Set(wordList);
+  if (!wordSet.has(endWord)) return 0;
+
   const queue = [beginWord];
   let count = 1;
+  const visited = new Set();
+
   while (queue.length) {
     const size = queue.length;
-    let flag = false;
+
+    count++;
+
     for (let index = 0; index < size; index++) {
       const target = queue.shift();
       if (target === endWord) return count;
 
-      const [word1, word2, word3] = target.split("");
-      for (let wordIndex = 0; wordIndex < wordList.length; wordIndex++) {
-        const wordItem = wordList[wordIndex];
-        if (isSubsequence(wordItem, `${word1}${word2}`)) {
-          queue.push(wordItem);
-          flag = true;
-        }
+      const wordLength = beginWord.length;
 
-        if (isSubsequence(wordItem, `${word1}${word3}`)) {
-          queue.push(wordItem);
-          flag = true;
-        }
+      for (let pos = 0; pos < wordLength; pos++) {
+        for (let w = 97; w <= 122; w++) {
+          const char = String.fromCharCode(w);
+          if (char === target[pos]) continue;
 
-        if (isSubsequence(wordItem, `${word2}${word3}`)) {
-          queue.push(wordItem);
-          flag = true;
+          const newWord = target.slice(0, pos) + char + target.slice(pos + 1);
+
+          if (newWord === endWord) return count;
+
+          if (wordSet.has(newWord) && !visited.has(newWord)) {
+            queue.push(newWord);
+            visited.add(newWord);
+          }
         }
       }
     }
-
-    if (flag) count++;
   }
 
   return count;
