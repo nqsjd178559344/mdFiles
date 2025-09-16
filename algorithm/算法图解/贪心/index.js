@@ -342,7 +342,6 @@ function fn6(intervals) {
     if (element[0] > lastEnd) {
       count++;
       lastEnd = element[1];
-      console.log(element, "eee");
     }
   }
 
@@ -389,8 +388,145 @@ const testCases6 = [
   },
 ];
 
-testCases6.forEach((test, i) => {
-  const result = fn6(test.input);
+// testCases6.forEach((test, i) => {
+//   const result = fn6(test.input);
+//   console.log(
+//     `测试用例 ${i + 1}:`,
+//     result === test.expected ? "通过" : "失败",
+//     `(结果: ${result}, 预期: ${test.expected})`
+//   );
+// });
+
+/**
+ * 第七题：加油站问题（中等难度，高频面试题）
+这道题是贪心算法在 “资源循环利用” 场景中的经典应用，需要结合 “局部收益” 和 “全局可行性” 的判断，比之前的区间问题更侧重 “动态决策”。
+问题描述
+在一条环路上有 n 个加油站，每个加油站有汽油 gas[i] 升。你有一辆油箱容量无限的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中一个加油站出发，开始时油箱为空。
+
+请问：你能否绕环路行驶一周？如果能，返回出发时加油站的索引；如果不能，返回 -1。
+
+说明：如果存在解，保证唯一（即只有一个加油站能作为起点）。
+示例 1：
+输入：gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+输出：3（从索引 3 出发：4→消耗 1 剩 3，+5 剩 8→消耗 2 剩 6，+1 剩 7→消耗 3 剩 4，+2 剩 6→消耗 4 剩 2，+3 剩 5，能绕一周）。
+示例 2：
+输入：gas = [2,3,4], cost = [3,4,3]
+输出：-1（总汽油量 9 < 总消耗量 10，无法绕一周）。
+ */
+
+function fn7(gas, cost) {
+  const sumGas = gas.reduce((pre, cur) => (pre += cur), 0);
+  const sumCost = cost.reduce((pre, cur) => (pre += cur), 0);
+  if (sumCost > sumGas) return -1;
+
+  let start = 0;
+  let current_tank = 0;
+
+  for (let i = 0; i < gas.length; i++) {
+    current_tank += gas[i] - cost[i];
+
+    if (current_tank < 0) {
+      start = i + 1;
+      current_tank = 0;
+    }
+  }
+
+  return start;
+}
+
+// 测试用例
+const testCases7 = [
+  {
+    gas: [1, 2, 3, 4, 5],
+    cost: [3, 4, 5, 1, 2],
+    expected: 3,
+  },
+  {
+    gas: [2, 3, 4],
+    cost: [3, 4, 3],
+    expected: -1,
+  },
+  {
+    gas: [1, 2, 3, 4, 5],
+    cost: [3, 4, 5, 1, 2],
+    expected: 3, // 正确
+  },
+  {
+    gas: [2, 3, 4],
+    cost: [3, 4, 3],
+    expected: -1, // 总汽油 9 < 总消耗 10，正确
+  },
+  {
+    gas: [3, 1, 2, 5, 4],
+    cost: [4, 2, 1, 3, 2],
+    expected: 2, // 从 2 出发：2→消耗 1 剩 1，+5 剩 6→消耗 3 剩 3，+4 剩 7→消耗 2 剩 5，+3 剩 8→消耗 4 剩 4，正确
+  },
+  {
+    gas: [5, 1, 2, 3, 4],
+    cost: [4, 4, 1, 5, 1],
+    expected: 4, // 从 4 出发：4→消耗 1 剩 3，+5 剩 8→消耗 4 剩 4，+1 剩 5→消耗 4 剩 1，+2 剩 3→消耗 1 剩 2，+3 剩 5→消耗 5 剩 0，正确
+  },
+];
+
+// testCases7.forEach((test, i) => {
+//   const result = fn7(test.gas, test.cost);
+//   console.log(
+//     `测试用例 ${i + 1}:`,
+//     result === test.expected ? "通过" : "失败",
+//     `(结果: ${result}, 预期: ${test.expected})`
+//   );
+// });
+
+/**
+ * 第八题：买卖股票的最佳时机 II（中等难度，贪心经典应用）
+这道题是贪心算法在 “利益最大化” 场景中的典型应用，核心是 “抓住每一次微小的上涨利润”，逻辑直观但需要理解 “为什么局部利润之和等于全局最大利润”。
+问题描述
+给定一个数组 prices，其中 prices[i] 表示某支股票第 i 天的价格。你可以无限次地完成交易（多次买卖一支股票），但有一个限制：你必须在卖出股票后，才能再次买入股票（即不能同时持有多支股票）。
+
+请计算你能获得的最大利润。如果不能获得任何利润，返回 0。
+
+示例 1：
+输入：prices = [7,1,5,3,6,4]
+输出：7（第 2 天买→第 3 天卖，赚 4；第 4 天买→第 5 天卖，赚 3，总利润 4+3=7）。
+示例 2：
+输入：prices = [1,2,3,4,5]
+输出：4（每天都持有，第 1 天买→第 5 天卖，利润 4；或拆分成每天买卖，利润 1+1+1+1=4，结果一致）。
+示例 3：
+输入：prices = [7,6,4,3,1]
+输出：0（价格一直下跌，不进行任何交易）。
+ */
+
+function fn8(prices) {
+  let sum = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    const diff = prices[i] - prices[i - 1];
+    if (diff >= 0) {
+      sum += diff;
+    }
+  }
+
+  return sum;
+}
+
+// 测试用例
+const testCases8 = [
+  {
+    prices: [7, 1, 5, 3, 6, 4],
+    expected: 7,
+  },
+  {
+    prices: [1, 2, 3, 4, 5],
+    expected: 4,
+  },
+  {
+    prices: [7, 6, 4, 3, 1],
+    expected: 0,
+  },
+];
+
+testCases8.forEach((test, i) => {
+  const result = fn8(test.prices);
   console.log(
     `测试用例 ${i + 1}:`,
     result === test.expected ? "通过" : "失败",
