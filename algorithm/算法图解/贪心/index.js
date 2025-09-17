@@ -642,17 +642,20 @@ minJump ≤ i - prev ≤ maxJump（prev 是你上一次跳跃的下标）
  */
 
 function fn11(s, minJump, maxJump) {
+  if (s[0] === "1" || s[s.length - 1] === "1") return false;
   // dp[i]能跳到第i个
   const dp = new Array(s.length).fill(false);
   dp[0] = true;
 
   for (let i = 1; i < s.length; i++) {
-    const s1 = s
-      .split("")
-      .slice(Math.max(i - maxJump, 0), Math.max(i - minJump + 1, 0));
-
-    if (s1.find((i) => i === "0")) {
-      dp[i] = true;
+    if (s[i] === "1") continue;
+    const left = Math.max(0, i - maxJump);
+    const right = Math.max(0, i - minJump + 1);
+    for (let j = left; j < right; j++) {
+      if (dp[j]) {
+        dp[i] = true;
+        break;
+      }
     }
   }
 
