@@ -525,8 +525,158 @@ const testCases8 = [
   },
 ];
 
-testCases8.forEach((test, i) => {
-  const result = fn8(test.prices);
+// testCases8.forEach((test, i) => {
+//   const result = fn8(test.prices);
+//   console.log(
+//     `测试用例 ${i + 1}:`,
+//     result === test.expected ? "通过" : "失败",
+//     `(结果: ${result}, 预期: ${test.expected})`
+//   );
+// });
+
+/**
+ * 第一题：跳跃游戏（简单版，LeetCode 55）
+题目描述
+给定一个非负整数数组 nums，你最初位于数组的第一个下标。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标。
+
+示例 1：输入 [2,3,1,1,4] → 输出 true
+示例 2：输入 [3,2,1,0,4] → 输出 false
+ */
+
+function fn9(nums) {
+  let max = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (max < i) return false;
+
+    max = Math.max(max, i + nums[i]);
+
+    if (max >= nums.length - 1) return true;
+  }
+
+  return false;
+}
+
+// 测试用例
+const testCases9 = [
+  {
+    prices: [2, 3, 1, 1, 4],
+    expected: true,
+  },
+  {
+    prices: [3, 2, 1, 0, 4],
+    expected: false,
+  },
+];
+
+// testCases9.forEach((test, i) => {
+//   const result = fn9(test.prices);
+//   console.log(
+//     `测试用例 ${i + 1}:`,
+//     result === test.expected ? "通过" : "失败",
+//     `(结果: ${result}, 预期: ${test.expected})`
+//   );
+// });
+
+/**
+ * 第二题：最小跳跃次数（LeetCode 45）
+题目描述
+给定一个非负整数数组 nums，你最初位于数组的第一个下标。数组中的每个元素代表你在该位置可以跳跃的最大长度。求到达最后一个下标的最小跳跃次数。
+
+示例 1：输入 [2,3,1,1,4] → 输出 2
+示例 2：输入 [2,3,0,1,4] → 输出 2
+ */
+
+function fn10(nums) {
+  let max = 0;
+  let currentEnd = 0;
+  let count = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    max = Math.max(max, i + nums[i]);
+
+    if (currentEnd === i) {
+      count++;
+      currentEnd = max;
+    }
+
+    if (currentEnd >= nums.length - 1) break;
+  }
+
+  return count;
+}
+
+// 测试用例
+const testCases10 = [
+  {
+    prices: [2, 3, 1, 1, 4],
+    expected: 2,
+  },
+  {
+    prices: [3, 2, 1, 0, 4],
+    expected: 2,
+  },
+];
+
+// testCases10.forEach((test, i) => {
+//   const result = fn10(test.prices);
+//   console.log(
+//     `测试用例 ${i + 1}:`,
+//     result === test.expected ? "通过" : "失败",
+//     `(结果: ${result}, 预期: ${test.expected})`
+//   );
+// });
+
+/**
+ * 第三题：跳跃游戏 VII（中等，LeetCode 1871）
+题目描述
+给你一个下标从 0 开始的二进制字符串 s 和两个整数 minJump 和 maxJump。一开始，你在下标 0 处，且该位置的值一定是 '0'。你可以跳跃到满足以下条件的任意下标 i：
+
+i > 0
+s[i] == '0'
+minJump ≤ i - prev ≤ maxJump（prev 是你上一次跳跃的下标）
+请判断你能否到达下标 s.length - 1。
+
+示例 1：输入 s = "011010", minJump = 2, maxJump = 3 → 输出 true（0→3→5）
+示例 2：输入 s = "01101110", minJump = 2, maxJump = 3 → 输出 false
+ */
+
+function fn11(s, minJump, maxJump) {
+  // dp[i]能跳到第i个
+  const dp = new Array(s.length).fill(false);
+  dp[0] = true;
+
+  for (let i = 1; i < s.length; i++) {
+    const s1 = s
+      .split("")
+      .slice(Math.max(i - maxJump, 0), Math.max(i - minJump + 1, 0));
+
+    if (s1.find((i) => i === "0")) {
+      dp[i] = true;
+    }
+  }
+
+  return dp[s.length - 1];
+}
+
+// 测试用例
+const testCases11 = [
+  {
+    s: "011010",
+    minJump: 2,
+    maxJump: 3,
+    expected: true,
+  },
+  {
+    s: "01101110",
+    minJump: 2,
+    maxJump: 3,
+    expected: false,
+  },
+];
+
+testCases11.forEach((test, i) => {
+  const result = fn11(test.s, test.minJump, test.maxJump);
   console.log(
     `测试用例 ${i + 1}:`,
     result === test.expected ? "通过" : "失败",
