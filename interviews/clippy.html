@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS实现clippy效果</title>
+    <style>
+      /* 容器居中，方便查看效果 */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0; /* 浅灰色背景，突出方框 */
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+        background: #fff; /* 元素背景 */
+      }
+
+      /* 全局定义变量（:root 作用域） */
+      :root {
+        --total: 200px;
+        --rabbet-width: 30px; /* clippy 深度，需大于 --total / 2 */
+        --rabbet-depth: calc(
+          var(--rabbet-width) / var(--total) * 100%
+        ); /* clippy 深度 */
+        --border-width: 5px; /* 边框宽度 */
+      }
+
+      .box1 {
+        clip-path: polygon(
+          0% var(--rabbet-depth),
+          var(--rabbet-depth) var(--rabbet-depth),
+          var(--rabbet-depth) 0%,
+          calc(100% - var(--rabbet-depth)) 0%,
+          calc(100% - var(--rabbet-depth)) var(--rabbet-depth),
+          100% var(--rabbet-depth),
+          100% calc(100% - var(--rabbet-depth)),
+          calc(100% - var(--rabbet-depth)) calc(100% - var(--rabbet-depth)),
+          calc(100% - var(--rabbet-depth)) 100%,
+          var(--rabbet-depth) 100%,
+          var(--rabbet-depth) calc(100% - var(--rabbet-depth)),
+          0% calc(100% - var(--rabbet-depth))
+        );
+        outline: var(--border-width) solid #000; /* 黑色描边 */
+        outline-offset: calc(-1 * var(--border-width));
+        /* 抵消描边宽度，避免超出裁剪区域 */
+      }
+
+      .box2 {
+        position: relative;
+      }
+
+      .top_left {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: calc(var(--rabbet-width) - var(--border-width));
+        height: calc(var(--rabbet-width) - var(--border-width));
+        border: var(--border-width) solid transparent;
+        border-top-color: #000;
+        border-left-color: #000;
+      }
+
+      .top_right {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: calc(var(--rabbet-width) - var(--border-width));
+        height: calc(var(--rabbet-width) - var(--border-width));
+        border: var(--border-width) solid transparent;
+        border-top-color: #000;
+        border-right-color: #000;
+      }
+
+      .bottom_left {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc(var(--rabbet-width) - var(--border-width));
+        height: calc(var(--rabbet-width) - (var(--border-width)));
+        border: var(--border-width) solid transparent;
+        border-bottom-color: #000;
+        border-left-color: #000;
+      }
+
+      .bottom_right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(var(--rabbet-width) - var(--border-width));
+        height: calc(var(--rabbet-width) - (var(--border-width)));
+        border: var(--border-width) solid transparent;
+        border-bottom-color: #000;
+        border-right-color: #000;
+      }
+
+      .rabbet {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #fff; /* 主体背景色（可根据需要修改） */
+        /* 定义 Rabbet 形状：右侧中间带一个矩形缺口 */
+        clip-path: polygon(
+          0% var(--rabbet-depth),
+          var(--rabbet-depth) var(--rabbet-depth),
+          var(--rabbet-depth) 0%,
+          calc(100% - var(--rabbet-depth)) 0%,
+          calc(100% - var(--rabbet-depth)) var(--rabbet-depth),
+          100% var(--rabbet-depth),
+          100% calc(100% - var(--rabbet-depth)),
+          calc(100% - var(--rabbet-depth)) calc(100% - var(--rabbet-depth)),
+          calc(100% - var(--rabbet-depth)) 100%,
+          var(--rabbet-depth) 100%,
+          var(--rabbet-depth) calc(100% - var(--rabbet-depth)),
+          0% calc(100% - var(--rabbet-depth))
+        );
+      }
+
+      /* 用伪元素实现黑色边框 */
+      .rabbet::before {
+        content: "";
+        position: absolute;
+        /* 比主体大 2px（边框宽度），确保边框完整显示 */
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: transparent; /* 背景透明，仅显示边框 */
+        border: 2px solid #000; /* 黑色边框 */
+        /* 继承主体的裁剪形状，确保边框与主体形状一致 */
+        clip-path: inherit;
+        z-index: -1; /* 放在主体下方，避免遮挡主体内容 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 方框容器 -->
+    <div class="box box1 box2">
+      <span class="top_left"></span>
+      <span class="top_right"></span>
+      <span class="bottom_left"></span>
+      <span class="bottom_right"></span>
+    </div>
+  </body>
+</html>
